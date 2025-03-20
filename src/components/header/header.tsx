@@ -3,6 +3,7 @@ import { CiUser } from "react-icons/ci";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { CiLogout } from "react-icons/ci";
+import Logo from "../../assets/projectLogo.png";
 
 export default function Header() {
   const loginUser = useSelector((state: any) => state.userData.loginUser);
@@ -20,7 +21,7 @@ export default function Header() {
       <div className="container">
         <Link to="/home">
           <img
-            src="../../../public/projectLogo.png"
+            src={Logo}
             alt="logo"
             className="logo"
           />
