@@ -5,6 +5,11 @@ import { myStore } from "./store.ts";
 import { Provider } from "react-redux";
 import { HashRouter  } from "react-router";
 
+import { localUsers } from "./data";
+
+localStorage.getItem("garduationProjectUsers")
+  ? null
+  : localStorage.setItem("garduationProjectUsers", JSON.stringify(localUsers));
 
 
 createRoot(document.getElementById("root")!).render(
