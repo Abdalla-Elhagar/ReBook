@@ -34,7 +34,7 @@ function App() {
 
   return (
     <div className="app">
-      {location.pathname !== "/signUp" && location.pathname !== "/logIn" ? (
+      {localStorage.getItem("loginUser") ? (
         <Header />
       ) : null}
 
