@@ -21,8 +21,8 @@ export default function Hero() {
   return (
     <section className="heroSection">
       <div className="container max-md:flex-col max-md:items-center">
-        {users.map((user: UserTypes) =>
-          user.books.map((book: BooksTypes) => (
+        {users?.map((user: UserTypes) =>
+          user.books?.map((book: BooksTypes) => (
             <div key={book.id} className="bookCard max-sm:w-full">
               <img src={book.imageUrl} alt="book image" />
               <div className="text">

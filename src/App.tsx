@@ -8,12 +8,11 @@ import { useNavigate } from "react-router";
 import Home from "./pages/home/home";
 import BookPage from "./pages/book/book";
 import Header from "./components/header/header";
-// import { localUsers } from "./data";
+import { localUsers } from "./data";
 
-
-// localStorage.getItem("garduationProjectUsers")
-//   ? null
-//   : localStorage.setItem("garduationProjectUsers", JSON.stringify(localUsers));
+localStorage.getItem("garduationProjectUsers")
+  ? null
+  : localStorage.setItem("garduationProjectUsers", JSON.stringify(localUsers));
 
 function App() {
   const navigate: any = useNavigate();
@@ -35,8 +34,10 @@ function App() {
 
   return (
     <div className="app">
-      {location.pathname !== "/signUp" && location.pathname !== "/logIn" ? <Header /> : null}
-      
+      {location.pathname !== "/signUp" && location.pathname !== "/logIn" ? (
+        <Header />
+      ) : null}
+
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
