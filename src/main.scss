@@ -1,0 +1,22 @@
+@use "./pages/logIn/login.scss" as *;
+@use "./pages/signUp/signUp.scss" as *;
+@use "./pages/book/book.scss" as *;
+@use "./components/header/header.scss" as *;
+@use "./sassItems" as *;
+@use "./components/hero/hero.scss" as *;
+
+* {
+    text-decoration: none;
+}
+
+.container {
+    padding: 0 60px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
