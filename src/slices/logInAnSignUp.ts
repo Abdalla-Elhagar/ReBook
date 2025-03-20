@@ -1,27 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
 const initialState = {
-  arrOfUsers: JSON.parse(localStorage.getItem("garduationProjectUsers") || "[]"),
+  arrOfUsers: JSON.parse(
+    localStorage.getItem("garduationProjectUsers") || "[]"
+  ),
   loginUser: JSON.parse(localStorage.getItem("loginUser") || "[]"),
 };
 const userData = createSlice({
   name: "userData",
   initialState,
   reducers: {
-    addUserToUsers:(state , action) => {
-      state.arrOfUsers.push(action.payload)
-      localStorage.setItem("garduationProjectUsers", JSON.stringify(state.arrOfUsers))
+    addUserToUsers: (state, action) => {
+      state.arrOfUsers.push(action.payload);
+      localStorage.setItem(
+        "garduationProjectUsers",
+        JSON.stringify(state.arrOfUsers)
+      );
     },
-    loginR:(state , action) => {
-      state.loginUser = action.payload
-      localStorage.setItem("loginUser", JSON.stringify(state.loginUser))
-
+    loginR: (state, action) => {
+      state.loginUser = action.payload;
+      localStorage.setItem("loginUser", JSON.stringify(state.loginUser));
     },
-    
   },
 });
 
 export default userData.reducer;
 
-export const {addUserToUsers , loginR} = userData.actions
+export const { addUserToUsers, loginR } = userData.actions;

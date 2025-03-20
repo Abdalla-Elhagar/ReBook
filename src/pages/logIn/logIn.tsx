@@ -23,15 +23,7 @@ export default function Login() {
     password: "",
     phone:"",
     confirmPassword: "",
-    books: [
-      {
-        id: Math.floor(Math.random() * 1000000),
-        bookName: "",
-        author: "",
-        description:"",
-        imageUrl: "",
-      },
-    ],
+    books: [],
   });
   const [error, setError] = useState<boolean>(false);
 
@@ -46,6 +38,8 @@ export default function Login() {
       navigate("/home");
     } else {
       setError(true);
+      console.log(users)
+      console.log(selectedUser)
     }
   }
   return (
