@@ -1,5 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+import { localUsers } from "../data";
+
+localStorage.getItem("garduationProjectUsers")
+  ? null
+  : localStorage.setItem("garduationProjectUsers", JSON.stringify(localUsers));
+
+
+
 const initialState = {
   arrOfUsers: JSON.parse(
     localStorage.getItem("garduationProjectUsers") || "[]"

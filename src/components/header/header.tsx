@@ -38,10 +38,10 @@ export default function Header() {
             </div>
             <Link
               onClick={() => setShow(false)}
-              to="/myAccount"
+              to="/myProfile"
               className="item account"
             >
-              My Account
+              My Profile
             </Link>
             <button
               className="item logOut"

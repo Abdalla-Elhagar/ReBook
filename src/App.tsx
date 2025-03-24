@@ -8,6 +8,7 @@ import { useNavigate } from "react-router";
 import Home from "./pages/home/home";
 import BookPage from "./pages/book/book";
 import Header from "./components/header/header";
+import MyProfile from "./pages/profile/profile";
 
 function App() {
   const navigate: any = useNavigate();
@@ -38,6 +39,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/bookPage" element={<BookPage />} />
+        <Route path="/myProfile" element={<MyProfile />} />
       </Routes>
     </div>
   );

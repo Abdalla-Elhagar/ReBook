@@ -1,15 +1,27 @@
 @use "../../sassItems" as *;
 
 .bookPage {
+  min-height: 100vh;
+  background-image: linear-gradient(
+    to bottom,
+    $topColorGradient,
+    $downColorGradient
+  );
   .container {
     display: flex;
     justify-content: space-between;
+    background-color: white;
+    max-width: 900px;
+    padding: 0;
+    border-radius: 8px;
     .bookImg {
       width: 400px;
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
     }
     .right {
       max-width: calc(100% - 425px);
-    
+      padding: 10px;
       .bookData {
         margin-bottom: 50px;
         overflow-wrap: break-word;
@@ -30,14 +42,11 @@
         gap: 5px;
 
         .title {
-            font-size: 25px;
-            font-weight: bold;
-
-            
-            
+          font-size: 25px;
+          font-weight: bold;
         }
-        >p {
-            font-size: 20px;
+        > p {
+          font-size: 20px;
         }
       }
     }
