@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FaBook } from "react-icons/fa";
 import { BooksTypes, UserTypes } from "../pages/signUp/signUp";
 import { CiUser } from "react-icons/ci";
 import { MdOutlineDescription } from "react-icons/md";
 import { FaLink } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
-import { loginR, updateBooks } from "../slices/logInAnSignUp";
+import { loginR } from "../slices/logInAnSignUp";
 
 export default function AddBook() {
   const logInUser = useSelector((state: any) => state.userData.loginUser);
