@@ -54,7 +54,6 @@ export default function SignUp() {
         (storedUser: UserTypes) => storedUser.email === user.email
       ) || [];
 
-    console.log(filterdUser);
 
     filterdUser.length !== 0 ? setError(true) : null;
     setFUserError(filterdUser.length);

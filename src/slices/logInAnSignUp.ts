@@ -13,6 +13,7 @@ const initialState = {
     localStorage.getItem("garduationProjectUsers") || "[]"
   ),
   loginUser: JSON.parse(localStorage.getItem("loginUser") || "[]"),
+  
 };
 const userData = createSlice({
   name: "userData",
@@ -29,9 +30,12 @@ const userData = createSlice({
       state.loginUser = action.payload;
       localStorage.setItem("loginUser", JSON.stringify(state.loginUser));
     },
+    updateBooks: (state , action)=> {
+      state.loginUser.books.push(action.payload)
+    }
   },
 });
 
 export default userData.reducer;
 
-export const { addUserToUsers, loginR } = userData.actions;
+export const { addUserToUsers, loginR , updateBooks } = userData.actions;

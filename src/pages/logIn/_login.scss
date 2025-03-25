@@ -43,12 +43,13 @@
       }
       .errorMessage {
         @include center;
+        width: 100%;
+        padding: 10px 5px;
         justify-content: flex-start;
         gap: 10px;
-        padding: 0 20px;
         margin-left: 20px;
         color: red;
-        width: calc(100% - 80px);
+        width: calc(100% - 40px);
         border: 1px solid red;
         border-radius: 7px;
         background-color: rgba(255, 0, 0, 0.063);

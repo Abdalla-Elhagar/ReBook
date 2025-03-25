@@ -8,6 +8,20 @@
       $topColorGradient,
       $downColorGradient
     );
+    .window {
+      background-color: white;
+      width: 500px;
+      min-height: 500px;
+
+      .closeIcon {
+        font-size: 20px;
+        transition: 0.3s;
+
+        &:hover{
+          color: rgb(255, 41, 37);
+        }
+      }
+    }
     .profileData {
       background-color: white;
       width: 700px;

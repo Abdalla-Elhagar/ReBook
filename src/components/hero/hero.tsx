@@ -9,10 +9,10 @@ export default function Hero() {
 
   return (
     <section className="heroSection">
-      <div className="container max-md:flex-col max-md:items-center">
+      <div className="container max-md:flex-col flex-wrap max-md:items-center">
         {users?.map((user: UserTypes) =>
           user.books?.map((book: BooksTypes) => (
-            <BookCard book={book} user={user} />
+            <BookCard key={book.id} book={book} user={user} />
           ))
         )}
       </div>
