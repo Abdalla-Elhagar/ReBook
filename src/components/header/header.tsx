@@ -31,7 +31,7 @@ export default function Header() {
           <CiUser />
         </button>
         {show && (
-          <div className="userList">
+          <div className="userList z-50">
             <div className="item">
               <div className="name">{loginUser.name}</div>
               <div className="email">{loginUser.email}</div>
@@ -39,7 +39,7 @@ export default function Header() {
             <Link
               onClick={() => setShow(false)}
               to="/myProfile"
-              className="item account"
+              className="item account z-50"
             >
               My Profile
             </Link>

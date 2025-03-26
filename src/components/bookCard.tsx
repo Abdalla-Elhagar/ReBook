@@ -54,7 +54,8 @@ export default function BookCard({
       key={book.id}
       className={`${
         location.hash == "#/myProfile" && "max-sm:h-40 gap-5"
-      } bookCard  max-sm:w-full min-h-[600px!important]`}
+      } bookCard  max-sm:w-full ${
+        location.hash == "#/home" && "min-h-[600px!important]"} `}
     >
       <img
         className={`${
