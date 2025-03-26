@@ -61,9 +61,9 @@ export default function MyProfile() {
             {logInUser.phone}
           </h3>
 
-          <div className="userBooks w-full px-6">
-            <div className="titleAndAddBook flex justify-between px-5">
-              <h2 className=" mt-6 text-3xl font-bold">My Books</h2>
+          <div className="userBooks w-full px-6 mt-10">
+            <div className="titleAndAddBook flex justify-between items-center px-5">
+              <h2 className="text-3xl font-bold">My Books</h2>
               <button
                 onClick={() => {
                   setShowAddBook(true);
@@ -74,7 +74,7 @@ export default function MyProfile() {
                 <IoAddOutline className="addBookIcone" />
               </button>
             </div>
-            <div className="books  flex justify-center items-center flex-col gap-5 py-5">
+            <div className="books flex justify-center items-center flex-col gap-5 py-5">
               {logInUser.books.map((book: BooksTypes) => (
                 <BookCard book={book} user={logInUser} />
               ))}
