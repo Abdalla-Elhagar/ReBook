@@ -1,5 +1,5 @@
 import userImage from "../../assets/userImage.png";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { IoAddOutline } from "react-icons/io5";
 import { FiEdit } from "react-icons/fi";
 import { BooksTypes } from "../signUp/signUp";
@@ -7,32 +7,35 @@ import BookCard from "../../components/bookCard";
 import EditUserData from "../../components/editUserData";
 import AddBook from "../../components/AddBook";
 import { IoClose } from "react-icons/io5";
-import { useState } from "react";
-
+import {
+  closeAndShowAddBooksWindows,
+  closeAndShowEditWindows,
+} from "../../slices/dataControl";
 
 export default function MyProfile() {
+  const dispatch = useDispatch();
   const logInUser = useSelector((state: any) => state.userData.loginUser);
-  const [show, setShow] = useState<boolean>(false);
-  const [showEditUser, setShowEditUser] = useState<boolean>(false);
-  const [showAddBook, setShowAddBook] = useState<boolean>(false);
+  const showEdit = useSelector((state: any) => state.dataControl.showEdit);
+  const showAddBooks = useSelector(
+    (state: any) => state.dataControl.showAddBooks
+  );
 
   return (
     <div className="myProfile flex relative">
-      {show && (
+      {(showEdit || showAddBooks) && (
         <div className="windowBackGround fixed w-full h-screen top-0 left-0 bg-black/80 z-50 flex justify-around items-center">
           <div className="window editWindow relative ">
             <button
               onClick={() => {
-                setShowEditUser(false);
-                setShowAddBook(false);
-                setShow(false);
+                dispatch(closeAndShowEditWindows(false));
+                dispatch(closeAndShowAddBooksWindows(false));
               }}
               className="close absolute top-5 right-5"
             >
               <IoClose className="closeIcon" />
             </button>
-            {showEditUser && <EditUserData />}
-            {showAddBook && <AddBook />}
+            {showEdit && <EditUserData />}
+            {showAddBooks && <AddBook />}
           </div>
         </div>
       )}
@@ -40,8 +43,7 @@ export default function MyProfile() {
         <div className="profileData flex flex-col items-center max-sm:w-full">
           <button
             onClick={() => {
-              setShowEditUser(true);
-              setShow(true);
+              dispatch(closeAndShowEditWindows(true));
             }}
             className="edit absolute right-5 top-5"
           >
@@ -66,8 +68,7 @@ export default function MyProfile() {
               <h2 className="text-3xl font-bold">My Books</h2>
               <button
                 onClick={() => {
-                  setShowAddBook(true);
-                  setShow(true);
+                  dispatch(closeAndShowAddBooksWindows(true));
                 }}
                 className="addBook"
               >

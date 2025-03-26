@@ -4,6 +4,7 @@ import { UserTypes } from "../pages/signUp/signUp";
 import { useDispatch, useSelector } from "react-redux";
 import { MdOutlineEmail } from "react-icons/md";
 import { loginR } from "../slices/logInAnSignUp";
+import { closeAndShowEditWindows } from "../slices/dataControl";
 
 export default function EditUserData() {
   const dispatch = useDispatch();
@@ -55,6 +56,8 @@ export default function EditUserData() {
       );
 
       dispatch(loginR(user));
+
+      dispatch(closeAndShowEditWindows(false))
     } else {
       setError(true);
     }

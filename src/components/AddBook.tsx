@@ -6,6 +6,7 @@ import { MdOutlineDescription } from "react-icons/md";
 import { FaLink } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { loginR } from "../slices/logInAnSignUp";
+import { closeAndShowAddBooksWindows } from "../slices/dataControl";
 
 export default function AddBook() {
   const logInUser = useSelector((state: any) => state.userData.loginUser);
@@ -38,12 +39,7 @@ export default function AddBook() {
         );
 
         const newLoginUserArray = { ...logInUser, books: [...(logInUser.books || []), book] }
-        
 
-
-
-
-        console.log(newLoginUserArray);
         userWithOutLoginUser.push(newLoginUserArray);
         localStorage.setItem(
           "garduationProjectUsers",
@@ -51,6 +47,7 @@ export default function AddBook() {
         );
 
         dispatch(loginR(newLoginUserArray));
+        dispatch(closeAndShowAddBooksWindows(false));
       } else {
         setError(true);
       }

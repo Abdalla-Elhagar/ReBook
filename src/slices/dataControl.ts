@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   bookData: { user: {}, book: {} },
-  show: false,
+  showEdit: false,
+  showAddBooks: false,
 };
 const dataControl = createSlice({
   name: "dataControl",
@@ -12,12 +13,15 @@ const dataControl = createSlice({
       state.bookData.user = action.payload.user;
       state.bookData.book = action.payload.book;
     },
-    closeAndShowWindows: (state, action) => {
-      state.show = action.payload;
+    closeAndShowEditWindows: (state, action) => {
+      state.showEdit = action.payload;
+    },
+    closeAndShowAddBooksWindows: (state, action) => {
+      state.showAddBooks = action.payload;
     },
   },
 });
 
 export default dataControl.reducer;
 
-export const { showBookData, closeAndShowWindows } = dataControl.actions;
+export const { showBookData, closeAndShowEditWindows ,closeAndShowAddBooksWindows } = dataControl.actions;

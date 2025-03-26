@@ -1,9 +1,8 @@
 @use "../../sassItems" as *;
 
-.header {
-  background-color: white;
+header {
+  // border-bottom: 1px solid red;
   padding: 0;
-  box-shadow: -1px -1px 16px 0px #cbcbcb;
   z-index: 9999;
   .container {
     @include center;

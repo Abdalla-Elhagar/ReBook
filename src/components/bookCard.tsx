@@ -38,19 +38,24 @@ export default function BookCard({
 
     const userBooks = { ...loginUser, books: filterdbooks };
 
-    dispatch(loginR(userBooks))
-    const usersWithOutLoginUser = users.filter((user: UserTypes) => user.id !== loginUser.id);
-    usersWithOutLoginUser.push(userBooks)
+    dispatch(loginR(userBooks));
+    const usersWithOutLoginUser = users.filter(
+      (user: UserTypes) => user.id !== loginUser.id
+    );
+    usersWithOutLoginUser.push(userBooks);
 
     localStorage.setItem(
       "garduationProjectUsers",
       JSON.stringify(usersWithOutLoginUser)
     );
-
-   
   }
   return (
-    <div key={book.id} className={`${location.hash == "#/myProfile" && "max-sm:h-40 gap-5"} bookCard  max-sm:w-full `}>
+    <div
+      key={book.id}
+      className={`${
+        location.hash == "#/myProfile" && "max-sm:h-40 gap-5"
+      } bookCard  max-sm:w-full min-h-[600px!important]`}
+    >
       <img
         className={`${
           location.hash == "#/myProfile" &&
@@ -60,7 +65,9 @@ export default function BookCard({
         alt="book image"
       />
       <div
-        className="flex justify-between max-sm:gap-5 w-full p-0 max-sm:flex-col"
+        className={`${
+          location.hash == "#/myProfile"
+        }flex justify-between max-sm:gap-5 w-full p-0 max-sm:flex-col`}
       >
         <div className="text">
           <div className="bookName mb-2">{book.bookName}</div>
