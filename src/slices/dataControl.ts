@@ -4,6 +4,7 @@ const initialState = {
   bookData: { user: {}, book: {} },
   showEdit: false,
   showAddBooks: false,
+  search:""
 };
 const dataControl = createSlice({
   name: "dataControl",
@@ -19,9 +20,17 @@ const dataControl = createSlice({
     closeAndShowAddBooksWindows: (state, action) => {
       state.showAddBooks = action.payload;
     },
+    searchReducer: (state, action) => {
+      state.search = action.payload;
+    },
   },
 });
 
 export default dataControl.reducer;
 
-export const { showBookData, closeAndShowEditWindows ,closeAndShowAddBooksWindows } = dataControl.actions;
+export const {
+  showBookData,
+  closeAndShowEditWindows,
+  closeAndShowAddBooksWindows,
+  searchReducer,
+} = dataControl.actions;

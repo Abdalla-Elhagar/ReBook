@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { CiLogout } from "react-icons/ci";
 import Logo from "../../assets/projectLogo.png";
+import Search from "../search";
 
 export default function Header() {
   const loginUser = useSelector((state: any) => state.userData.loginUser);
@@ -26,10 +27,13 @@ export default function Header() {
             className="logo"
           />
         </Link>
-
-        <button onClick={handleShow} className="userButton">
-          <CiUser />
+        <div className="flex justify-end gap-5 items-center w-[280px]">
+          <Search />
+          <button onClick={handleShow} className="userButton">
+          <CiUser className="size-8" />
         </button>
+        </div>
+        
         {show && (
           <div className="userList z-50">
             <div className="item">

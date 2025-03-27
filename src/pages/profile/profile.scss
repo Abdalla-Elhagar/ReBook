@@ -8,6 +8,8 @@
       $topColorGradient,
       $downColorGradient
     );
+    padding-top: 100px;
+
     .window {
       background-color: $pageColor;
       width: 500px;
@@ -17,7 +19,7 @@
         font-size: 20px;
         transition: 0.3s;
 
-        &:hover{
+        &:hover {
           color: rgb(255, 41, 37);
         }
       }

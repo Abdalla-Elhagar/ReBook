@@ -9,6 +9,7 @@ import Home from "./pages/home/home";
 import BookPage from "./pages/book/book";
 import Header from "./components/header/header";
 import MyProfile from "./pages/profile/profile";
+import SearchPage from "./pages/searchPage/searchPage";
 
 function App() {
   const navigate: any = useNavigate();
@@ -40,6 +41,7 @@ function App() {
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/bookPage" element={<BookPage />} />
         <Route path="/myProfile" element={<MyProfile />} />
+        <Route path="/searchPage" element={<SearchPage />} />
       </Routes>
     </div>
   );

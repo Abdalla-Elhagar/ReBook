@@ -1,18 +1,17 @@
 @use "../../sassItems" as *;
 
-.heroSection {
+.searchPage {
+  background-color: $pageColor;
   width: 100%;
   padding: 40px 0;
-  background-color: $pageColor;
-  padding-top: 100px;
-
   .container {
     display: flex;
     justify-content: center;
     gap: 30px;
+    padding-top: 100px;
 
     .bookCard {
-      z-index: 1!important;
+      z-index: 1 !important;
       width: 300px;
       box-shadow: 0 0 10px rgb(209, 209, 209);
       position: relative;

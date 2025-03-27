@@ -5,6 +5,7 @@
 @use "./sassItems" as *;
 @use "./components/hero/hero.scss" as *;
 @use "./pages/profile/profile.scss" as *;
+@use "./pages/searchPage/searchPage.scss" as *;
 
 * {
     text-decoration: none;
@@ -20,4 +21,10 @@ button {
     border: none;
     background-color: transparent;
     cursor: pointer;
+}
+
+@media (width < 600px) {
+    .container{
+        padding: 0 30px;
+    }
 }

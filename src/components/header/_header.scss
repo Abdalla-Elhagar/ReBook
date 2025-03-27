@@ -1,10 +1,11 @@
 @use "../../sassItems" as *;
 
 header {
+  
   background-color: $pageColor;
   padding: 0;
   z-index: 99;
-  position: relative;
+  position: fixed;
   .container {
     @include center;
     justify-content: space-between;
@@ -79,3 +80,40 @@ header {
     }
   }
 }
+
+
+.search {
+  input {
+    background-color: rgb(225, 225, 225);
+    padding: 7px 10px;
+    border: 1px solid rgb(188, 188, 188);
+    border-radius: 5px;
+    color: rgb(103, 103, 103);
+    
+    &:focus {
+      outline: none  ;
+    }
+  }
+  
+}
+.searchIcon {
+    color: rgb(103, 103, 103); 
+  }
+
+  .resposiveSearch {
+    input {
+      background-color: transparent;
+      border: 2px solid white;
+      padding: 7px 10px;
+      border-radius: 99999px;
+      color: white;
+
+      
+      &:focus {
+        outline: none  ;
+      }
+    }
+    .searchIcon {
+      color: white; 
+    }
+  }
