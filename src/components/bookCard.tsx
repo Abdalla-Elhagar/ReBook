@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import { BooksTypes, UserTypes } from "../pages/signUp/signUp";
 import { IoIosRemoveCircle } from "react-icons/io";
 import { loginR } from "../slices/logInAnSignUp";
+import { AnimatePresence, motion } from "motion/react";
 
 export default function BookCard({
   book,
@@ -50,44 +51,49 @@ export default function BookCard({
     );
   }
   return (
-    <div
-      key={book.id}
-      className={`${
-        location.hash == "#/myProfile" && "max-sm:h-40 gap-5"
-      } bookCard  max-sm:w-full ${
-        location.hash == "#/home" && "min-h-[600px!important]"} `}
-    >
-      <img
+    <AnimatePresence>
+      <motion.div
+        transition={{ duration: 0.7 }}
+        exit={{ translateX: -50, opacity: 0 }}
+        key={book.id}
         className={`${
-          location.hash == "#/myProfile" &&
-          "max-sm:h-full max-sm:w-[100px!important]"
+          location.hash == "#/myProfile" && "max-sm:h-40 gap-5"
+        } bookCard  max-sm:w-full ${
+          location.hash == "#/home" && "min-h-[600px!important]"
         } `}
-        src={book.imageUrl}
-        alt="book image"
-      />
-      <div
-        className={`${
-          location.hash == "#/myProfile"
-        }flex justify-between max-sm:gap-5 w-full p-0 max-sm:flex-col`}
       >
-        <div className="text">
-          <div className="bookName mb-2">{book.bookName}</div>
-          <div className="authorName">{book.author}</div>
-        </div>
-        <div className="buttons flex justify-end">
-          <button
-            onClick={() => handleShow(user.id, book.id)}
-            className="show w-full"
-          >
-            Show
-          </button>
-          {location.hash == "#/myProfile" && (
-            <button onClick={() => handleRemove(book.id)}>
-              <IoIosRemoveCircle className="text-red-600 text-2xl" />
+        <img
+          className={`${
+            location.hash == "#/myProfile" &&
+            "max-sm:h-full max-sm:w-[100px!important]"
+          } `}
+          src={book.imageUrl}
+          alt="book image"
+        />
+        <div
+          className={`${
+            location.hash == "#/myProfile"
+          }flex justify-between max-sm:gap-5 w-full p-0 max-sm:flex-col`}
+        >
+          <div className="text">
+            <div className="bookName mb-2">{book.bookName}</div>
+            <div className="authorName">{book.author}</div>
+          </div>
+          <div className="buttons flex justify-end">
+            <button
+              onClick={() => handleShow(user.id, book.id)}
+              className="show w-full"
+            >
+              Show
             </button>
-          )}
+            {location.hash == "#/myProfile" && (
+              <button onClick={() => handleRemove(book.id)}>
+                <IoIosRemoveCircle className="text-red-600 text-2xl" />
+              </button>
+            )}
+          </div>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </AnimatePresence>
   );
 }

@@ -110,10 +110,11 @@
 }
 .footerBox {
   @include center;
-  background-color: rgb(249 250 251);
+  background-color: $pageColor;
   border-top: 1px solid #ddd;
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   border-radius: 9px;
+  padding: 10px;
 
   .toLogin {
     margin-left: 5px;

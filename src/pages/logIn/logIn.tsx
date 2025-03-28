@@ -8,6 +8,7 @@ import { UserTypes } from "../signUp/signUp";
 import { useSelector, useDispatch } from "react-redux";
 import { loginR } from "../../slices/logInAnSignUp";
 import { useNavigate } from "react-router";
+import { motion } from "motion/react";
 
 export default function Login() {
   const navigate: any = useNavigate();
@@ -44,7 +45,7 @@ export default function Login() {
   }
   return (
     <div className="login">
-      <div className="loginBox">
+      <motion.div className="loginBox" transition={{duration:1}} initial={{opacity:0}} animate={{opacity:1}}>
         <div className="titleBox">
           <div className="logo">
             <img src={Logo} />
@@ -95,7 +96,7 @@ export default function Login() {
             Create an account
           </Link>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

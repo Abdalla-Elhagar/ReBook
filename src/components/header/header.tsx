@@ -18,7 +18,7 @@ export default function Header() {
     navigate("/logIn");
   }
   return (
-    <header className="header drop-shadow-lg shadow-md">
+    <header className="header w-full drop-shadow-lg shadow-md">
       <div className="container">
         <Link to="/home">
           <img

@@ -7,6 +7,8 @@ import BookCard from "../../components/bookCard";
 import EditUserData from "../../components/editUserData";
 import AddBook from "../../components/AddBook";
 import { IoClose } from "react-icons/io5";
+import { motion } from "motion/react";
+import { AnimatePresence } from "motion/react";
 import {
   closeAndShowAddBooksWindows,
   closeAndShowEditWindows,
@@ -21,9 +23,10 @@ export default function MyProfile() {
   );
 
   return (
+    <AnimatePresence>
     <div className="myProfile flex relative">
       {(showEdit || showAddBooks) && (
-        <div className="windowBackGround fixed w-full h-screen top-0 left-0 bg-black/80 z-50 flex justify-around items-center">
+        <motion.div transition={{duration:0.5}} initial={{opacity:0}} animate={{opacity:1}} className="windowBackGround fixed w-full h-screen top-0 left-0 bg-black/80 z-50 flex justify-around items-center">
           <div className="window editWindow relative ">
             <button
               onClick={() => {
@@ -37,7 +40,7 @@ export default function MyProfile() {
             {showEdit && <EditUserData />}
             {showAddBooks && <AddBook />}
           </div>
-        </div>
+        </motion.div>
       )}
       <div className="container flex justify-center max-sm:p-[5px!important]">
         <div className="profileData flex flex-col items-center max-sm:w-full">
@@ -87,5 +90,6 @@ export default function MyProfile() {
         </div>
       </div>
     </div>
+    </AnimatePresence>
   );
 }

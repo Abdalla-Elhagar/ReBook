@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addUserToUsers, loginR } from "../../slices/logInAnSignUp";
 import { useNavigate } from "react-router";
+import { motion } from "motion/react";
 
 export interface UserTypes {
   id: number;
@@ -75,7 +76,7 @@ export default function SignUp() {
   }
   return (
     <div className="signUp ">
-      <div className="signUpBox max-sm:w-full">
+      <motion.div transition={{duration:1}} initial={{opacity:0}} animate={{opacity:1}} className="signUpBox max-sm:w-full">
         <div className="titleBox">
           <div className="logo">
             <img src={Logo} />
@@ -185,7 +186,7 @@ export default function SignUp() {
             Login
           </Link>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
