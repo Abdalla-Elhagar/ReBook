@@ -4,6 +4,7 @@ import { searchReducer } from "../slices/dataControl";
 import { useNavigate } from "react-router";
 import { IoIosSearch } from "react-icons/io";
 import { IoMdClose } from "react-icons/io";
+import { motion } from "motion/react";
 
 
 export default function Search() {
@@ -26,7 +27,8 @@ export default function Search() {
   }
   return (
     <>
-      <form
+      <motion.form
+      transition={{duration:0.6,delay:1.2}} initial={{y: -70}} animate={{y:0}}
         onSubmit={(e) => e.preventDefault()}
         className="search relative max-sm:hidden"
       >
@@ -41,7 +43,7 @@ export default function Search() {
         >
           <IoIosSearch className="searchIcon text-xl" />
         </button>
-      </form>
+      </motion.form>
 
       <button className="hidden max-sm:flex " onClick={() => setShow(true)}>
         <IoIosSearch className="searchIcon text-2xl" />

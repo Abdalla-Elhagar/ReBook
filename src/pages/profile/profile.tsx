@@ -43,7 +43,7 @@ export default function MyProfile() {
         </motion.div>
       )}
       <div className="container flex justify-center max-sm:p-[5px!important]">
-        <div className="profileData flex flex-col items-center max-sm:w-full">
+        <motion.div transition={{duration:0.5}} initial={{opacity:0}} animate={{opacity:1}} className="profileData flex flex-col items-center max-sm:w-full">
           <button
             onClick={() => {
               dispatch(closeAndShowEditWindows(true));
@@ -87,7 +87,7 @@ export default function MyProfile() {
               )}
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
     </AnimatePresence>
