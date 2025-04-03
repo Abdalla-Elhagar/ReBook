@@ -45,9 +45,9 @@ export default function Search() {
         </button>
       </motion.form>
 
-      <button className="hidden max-sm:flex " onClick={() => setShow(true)}>
+      <motion.button transition={{duration:0.6,delay:1.2}} initial={{y: -70}} animate={{y:0}} className="hidden max-sm:flex " onClick={() => setShow(true)}>
         <IoIosSearch className="searchIcon text-2xl" />
-      </button>
+      </motion.button>
 
       {show && (
         <div
