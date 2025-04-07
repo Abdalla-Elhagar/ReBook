@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 
-
 export default function BookPage() {
   const bookAndUserData = useSelector(
     (state: any) => state.dataControl.bookData
@@ -25,8 +24,18 @@ export default function BookPage() {
           <div className="bookOwner">
             <h3 className="title">Book Owner</h3>
             <p>{bookAndUserData.user.name}</p>
-            <p>{bookAndUserData.user.email}</p>
-            <p>{bookAndUserData.user.phone}</p>
+            <a
+              href={`https://mail.google.com/mail/u/0/?fs=1&to=${bookAndUserData.user.email}&su=استفسار&body=&tf=cm`}
+              target="_blank"
+            >
+              {bookAndUserData.user.email}
+            </a>
+            <a
+              href={`https://wa.me/${bookAndUserData.user.phone}`}
+              target="_blank"
+            >
+              {bookAndUserData.user.phone}
+            </a>
           </div>
         </div>
       </div>
