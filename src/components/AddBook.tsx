@@ -10,7 +10,7 @@ import { closeAndShowAddBooksWindows } from "../slices/dataControl";
 
 export default function AddBook() {
   const logInUser = useSelector((state: any) => state.userData.loginUser);
-  
+
   const dispatch = useDispatch();
   const [error, setError] = useState<boolean>(false);
   const [book, setBook] = useState<BooksTypes>({
@@ -25,33 +25,34 @@ export default function AddBook() {
   );
 
   function handleAdd() {
-    
-      if (
-        book.bookName.length >= 3 &&
-        book.author.length >= 3 &&
-        book.description.length >= 3 &&
-        book.imageUrl.length >= 3
-      ) {
-        setError(false);
+    if (
+      book.bookName.length >= 3 &&
+      book.author.length >= 3 &&
+      book.description.length >= 3 &&
+      book.imageUrl.length >= 3
+    ) {
+      setError(false);
 
-        const userWithOutLoginUser = users.filter(
-          (userFromUsers: UserTypes) => userFromUsers.id !== logInUser.id
-        );
+      const userWithOutLoginUser = users.filter(
+        (userFromUsers: UserTypes) => userFromUsers.id !== logInUser.id
+      );
 
-        const newLoginUserArray = { ...logInUser, books: [...(logInUser.books || []), book] }
+      const newLoginUserArray = {
+        ...logInUser,
+        books: [...(logInUser.books || []), book],
+      };
 
-        userWithOutLoginUser.push(newLoginUserArray);
-        localStorage.setItem(
-          "garduationProjectUsers",
-          JSON.stringify(userWithOutLoginUser)
-        );
+      userWithOutLoginUser.push(newLoginUserArray);
+      localStorage.setItem(
+        "garduationProjectUsers",
+        JSON.stringify(userWithOutLoginUser)
+      );
 
-        dispatch(loginR(newLoginUserArray));
-        dispatch(closeAndShowAddBooksWindows(false));
-      } else {
-        setError(true);
-      }
-    
+      dispatch(loginR(newLoginUserArray));
+      dispatch(closeAndShowAddBooksWindows(false));
+    } else {
+      setError(true);
+    }
   }
 
   return (
@@ -62,7 +63,7 @@ export default function AddBook() {
         <input
           type="text"
           id="bookName"
-          placeholder="Enter your name"
+          placeholder="Enter book name"
           required
           value={book.bookName}
           onChange={(e: any) => setBook({ ...book, bookName: e.target.value })}
