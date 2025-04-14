@@ -74,14 +74,44 @@ export default function SignUp() {
       setError(true);
     }
   }
+  const [show, setShow] = useState(false);
+  function handleShow() {
+    setShow(true);
+  }
+  const [reset, setReset] = useState();
+  function handleReset() {
+    localStorage.removeItem("garduationProjectUsers");
+    window.location.reload();
+  }
   return (
     <div className="signUp ">
       <motion.div
         transition={{ duration: 1 }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="signUpBox max-sm:w-full"
+        className="signUpBox max-sm:w-full relative"
       >
+        {show && (
+          <div className="w-52 h-20 absolute bg-black/20 flex flex-col gap-2  justify-center items-center ">
+            <input
+              type="password"
+              className="border-2"
+              value={reset}
+              onChange={(e: any) => setReset(e.target.value)}
+            />
+            {reset === "153" && (
+              <button
+                onClick={handleReset}
+                className="flex text-white bg-[#0284c7!important] px-6 py-2 rounded"
+              >
+                Reset
+              </button>
+            )}
+          </div>
+        )}
+        <button onClick={handleShow} className=" absolute top-0 right-0">
+          .
+        </button>
         <div className="titleBox">
           <div className="logo">
             <img src={Logo} />
