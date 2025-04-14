@@ -5,12 +5,12 @@ import { CiUser } from "react-icons/ci";
 import { MdOutlineDescription } from "react-icons/md";
 import { FaLink } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
-import { loginR } from "../slices/logInAnSignUp";
+import { addUserToUsers, loginR } from "../slices/logInAnSignUp";
 import { closeAndShowAddBooksWindows } from "../slices/dataControl";
 
 export default function AddBook() {
   const logInUser = useSelector((state: any) => state.userData.loginUser);
-
+  const users = useSelector((state: any) => state.userData.arrOfUsers);
   const dispatch = useDispatch();
   const [error, setError] = useState<boolean>(false);
   const [book, setBook] = useState<BooksTypes>({
@@ -20,9 +20,6 @@ export default function AddBook() {
     description: "",
     imageUrl: "",
   });
-  const users: UserTypes[] = useSelector(
-    (state: any) => state.userData.arrOfUsers
-  );
 
   function handleAdd() {
     if (
@@ -41,13 +38,10 @@ export default function AddBook() {
         ...logInUser,
         books: [...(logInUser.books || []), book],
       };
-
+      console.log(newLoginUserArray);
       userWithOutLoginUser.push(newLoginUserArray);
-      localStorage.setItem(
-        "garduationProjectUsers",
-        JSON.stringify(userWithOutLoginUser)
-      );
 
+      dispatch(addUserToUsers(userWithOutLoginUser));
       dispatch(loginR(newLoginUserArray));
       dispatch(closeAndShowAddBooksWindows(false));
     } else {

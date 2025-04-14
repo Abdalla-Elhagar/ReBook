@@ -6,7 +6,6 @@ import { IoIosSearch } from "react-icons/io";
 import { IoMdClose } from "react-icons/io";
 import { motion } from "motion/react";
 
-
 export default function Search() {
   const excludedRef = useRef<HTMLFormElement | null>(null);
   const dispatch = useDispatch();
@@ -28,9 +27,11 @@ export default function Search() {
   return (
     <>
       <motion.form
-      transition={{duration:0.6,delay:1.2}} initial={{y: -70}} animate={{y:0}}
+        transition={{ duration: 0.6, delay: 1.2 }}
+        initial={{ y: -70 }}
+        animate={{ y: 0 }}
         onSubmit={(e) => e.preventDefault()}
-        className="search relative max-sm:hidden"
+        className="search relative max-md:hidden"
       >
         <input
           type="text"
@@ -45,7 +46,13 @@ export default function Search() {
         </button>
       </motion.form>
 
-      <motion.button transition={{duration:0.6,delay:1.2}} initial={{y: -70}} animate={{y:0}} className="hidden max-sm:flex " onClick={() => setShow(true)}>
+      <motion.button
+        transition={{ duration: 0.6, delay: 1.2 }}
+        initial={{ y: -70 }}
+        animate={{ y: 0 }}
+        className="hidden max-md:flex "
+        onClick={() => setShow(true)}
+      >
         <IoIosSearch className="searchIcon text-2xl" />
       </motion.button>
 
@@ -54,9 +61,12 @@ export default function Search() {
           onClick={handleClick}
           className="fixed top-0 left-0 bg-black/20 flex justify-center h-screen w-screen"
         >
-            <button className=" text-white absolute top-2 right-2 " onClick={()=>setShow(false)}>
-                <IoMdClose className="text-2xl" />
-            </button>
+          <button
+            className=" text-white absolute top-2 right-2 "
+            onClick={() => setShow(false)}
+          >
+            <IoMdClose className="text-2xl" />
+          </button>
           <form
             onSubmit={(e) => e.preventDefault()}
             ref={excludedRef}

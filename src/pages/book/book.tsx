@@ -4,11 +4,17 @@ export default function BookPage() {
   const bookAndUserData = useSelector(
     (state: any) => state.dataControl.bookData
   );
+
+  console.log(bookAndUserData);
   return (
     <div className="bookPage py-10">
       <div className="container max-md:flex-col items-center">
         <img
-          src={bookAndUserData.book.imageUrl}
+          src={
+            bookAndUserData.book.imageUrl
+              ? bookAndUserData.book.imageUrl
+              : "asd"
+          }
           alt="book image"
           className="bookImg"
         />

@@ -14,7 +14,7 @@ export interface UserTypes {
   name: string;
   email: string;
   password: string;
-  phone:string;
+  phone: string;
   confirmPassword: string;
   books: BooksTypes[];
 }
@@ -22,7 +22,7 @@ export interface BooksTypes {
   id: number;
   bookName: string;
   author: string;
-  description:string
+  description: string;
   imageUrl: string;
 }
 
@@ -38,7 +38,7 @@ export default function SignUp() {
     name: "",
     email: "",
     password: "",
-    phone:"",
+    phone: "",
     confirmPassword: "",
     books: [],
   });
@@ -55,7 +55,6 @@ export default function SignUp() {
         (storedUser: UserTypes) => storedUser.email === user.email
       ) || [];
 
-
     filterdUser.length !== 0 ? setError(true) : null;
     setFUserError(filterdUser.length);
 
@@ -67,7 +66,8 @@ export default function SignUp() {
       isValidEmail(user.email)
     ) {
       setError(false);
-      dispatch(addUserToUsers(user));
+      const usersWithNewUser = [...users, user];
+      dispatch(addUserToUsers(usersWithNewUser));
       dispatch(loginR(user));
       navigate("/home");
     } else {
@@ -76,7 +76,12 @@ export default function SignUp() {
   }
   return (
     <div className="signUp ">
-      <motion.div transition={{duration:1}} initial={{opacity:0}} animate={{opacity:1}} className="signUpBox max-sm:w-full">
+      <motion.div
+        transition={{ duration: 1 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="signUpBox max-sm:w-full"
+      >
         <div className="titleBox">
           <div className="logo">
             <img src={Logo} />
@@ -101,7 +106,6 @@ export default function SignUp() {
             <p className="ERROR">{user.name} is not a name</p>
           )}
 
-
           <label htmlFor="name">Phone</label>
           <div className="input">
             <CiUser className="icon" />
@@ -117,7 +121,6 @@ export default function SignUp() {
           {error && user.phone.length < 11 && (
             <p className="ERROR">Phone number must be more than 10 letters</p>
           )}
-
 
           <label htmlFor="email">Email</label>
           <div className="input">

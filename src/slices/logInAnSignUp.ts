@@ -6,21 +6,18 @@ localStorage.getItem("garduationProjectUsers")
   ? null
   : localStorage.setItem("garduationProjectUsers", JSON.stringify(localUsers));
 
-
-
 const initialState = {
   arrOfUsers: JSON.parse(
     localStorage.getItem("garduationProjectUsers") || "[]"
   ),
   loginUser: JSON.parse(localStorage.getItem("loginUser") || "[]"),
-  
 };
 const userData = createSlice({
   name: "userData",
   initialState,
   reducers: {
     addUserToUsers: (state, action) => {
-      state.arrOfUsers.push(action.payload);
+      state.arrOfUsers = action.payload;
       localStorage.setItem(
         "garduationProjectUsers",
         JSON.stringify(state.arrOfUsers)
@@ -30,12 +27,12 @@ const userData = createSlice({
       state.loginUser = action.payload;
       localStorage.setItem("loginUser", JSON.stringify(state.loginUser));
     },
-    updateBooks: (state , action)=> {
-      state.loginUser.books.push(action.payload)
-    }
+    updateBooks: (state, action) => {
+      state.loginUser.books.push(action.payload);
+    },
   },
 });
 
 export default userData.reducer;
 
-export const { addUserToUsers, loginR , updateBooks } = userData.actions;
+export const { addUserToUsers, loginR, updateBooks } = userData.actions;

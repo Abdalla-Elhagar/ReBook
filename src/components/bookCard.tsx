@@ -3,7 +3,7 @@ import { showBookData } from "../slices/dataControl";
 import { useNavigate } from "react-router";
 import { BooksTypes, UserTypes } from "../pages/signUp/signUp";
 import { IoIosRemoveCircle } from "react-icons/io";
-import { loginR } from "../slices/logInAnSignUp";
+import { addUserToUsers, loginR } from "../slices/logInAnSignUp";
 import { AnimatePresence, motion } from "motion/react";
 
 export default function BookCard({
@@ -24,31 +24,42 @@ export default function BookCard({
   const dispatch = useDispatch();
 
   function handleShow(userId: number, bookId: number) {
-    const filterdUser = users.filter((user: UserTypes) => user.id === userId);
-    const filterdbook = filterdUser[0].books.filter(
-      (book: BooksTypes) => book.id === bookId
-    );
+    console.log("📌 userId:", userId);
+    console.log("📌 bookId:", bookId);
 
-    dispatch(showBookData({ user: filterdUser[0], book: filterdbook[0] }));
+    const foundUser = users.find((u) => u.id === userId);
+    if (!foundUser) {
+      console.log("❌ User not found");
+      return;
+    }
+
+    console.log("✅ Found user:", foundUser);
+
+    const foundBook = foundUser.books.find((b) => b.id === bookId);
+    if (!foundBook) {
+      console.log("❌ Book not found in user.books");
+      return;
+    }
+
+    console.log("✅ Found book:", foundBook);
+
+    dispatch(showBookData({ user: foundUser, book: foundBook }));
     navigate("/bookPage");
   }
   function handleRemove(bookId: number) {
-    const filterdbooks = loginUser.books.filter(
-      (book: BooksTypes) => book.id !== bookId
+    const filterdBooks = loginUser.books.filter((book: BooksTypes) => {
+      book.id !== bookId;
+    });
+
+    const userWithOutLoginUser = users.filter(
+      (userFromUsers: UserTypes) => userFromUsers.id !== loginUser.id
     );
+    const userBooks = { ...loginUser, books: filterdBooks };
 
-    const userBooks = { ...loginUser, books: filterdbooks };
-
+    userWithOutLoginUser.push(userBooks);
     dispatch(loginR(userBooks));
-    const usersWithOutLoginUser = users.filter(
-      (user: UserTypes) => user.id !== loginUser.id
-    );
-    usersWithOutLoginUser.push(userBooks);
 
-    localStorage.setItem(
-      "garduationProjectUsers",
-      JSON.stringify(usersWithOutLoginUser)
-    );
+    dispatch(addUserToUsers(userWithOutLoginUser));
   }
   return (
     <AnimatePresence>

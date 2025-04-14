@@ -10,13 +10,15 @@ export default function Hero() {
   return (
     <section className="heroSection">
       <div className="container max-sm:px-[10px!important] max-md:flex-col flex-wrap max-md:items-center">
-        {users?.map((user: UserTypes) =>
-          [...user.books]
-            .reverse()
-            .map((book: BooksTypes) => (
-              <BookCard key={book.id} book={book} user={user} />
-            ))
-        )}
+        {[...users]
+          .reverse()
+          .map((user: UserTypes) =>
+            [...user.books]
+              .reverse()
+              .map((book: BooksTypes) => (
+                <BookCard key={book.id} book={book} user={user} />
+              ))
+          )}
       </div>
     </section>
   );
