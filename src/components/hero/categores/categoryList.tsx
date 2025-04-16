@@ -35,7 +35,7 @@ export default function CategoryList() {
       </ul>
       {show2 && (
         <ul className="w-full ml-3 mt-5 max-md:flex hidden flex-col gap-5">
-          <h2 className="text-xl font-bold">categores</h2>
+          <h2 className="text-xl font-bold mt-12">categores</h2>
           {categores.map((category: string) => (
             <li className="categoryItem">
               <Link
