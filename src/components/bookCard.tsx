@@ -5,6 +5,9 @@ import { BooksTypes, UserTypes } from "../pages/signUp/signUp";
 import { IoIosRemoveCircle } from "react-icons/io";
 import { addUserToUsers, loginR } from "../slices/logInAnSignUp";
 import { AnimatePresence, motion } from "motion/react";
+// @ts-ignore
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 export default function BookCard({
   book,
@@ -70,16 +73,17 @@ export default function BookCard({
         className={`${
           location.hash == "#/myProfile" && "max-sm:h-40 gap-5"
         } bookCard  max-sm:w-full ${
-          location.hash == "#/home" && "min-h-[600px!important]"
+          location.hash !== "#/myProfile" && "min-h-[600px!important]"
         } `}
       >
-        <img
+        <LazyLoadImage
           className={`${
             location.hash == "#/myProfile" &&
             "max-sm:h-full max-sm:w-[100px!important]"
           } `}
           src={book.imageUrl}
           alt="book image"
+          effect="blur"
         />
         <div
           className={`${

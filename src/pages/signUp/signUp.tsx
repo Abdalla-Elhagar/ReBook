@@ -24,6 +24,7 @@ export interface BooksTypes {
   author: string;
   description: string;
   imageUrl: string;
+  category: string;
 }
 
 export default function SignUp() {

@@ -1,6 +1,6 @@
 @use "../../sassItems" as *;
 
-.heroSection {
+.postes {
   width: 100%;
   padding: 40px 0;
   background-color: $pageColor;
@@ -12,7 +12,7 @@
     gap: 30px;
 
     .bookCard {
-      z-index: 1!important;
+      z-index: 1 !important;
       width: 300px;
       box-shadow: 0 0 10px rgb(209, 209, 209);
       position: relative;

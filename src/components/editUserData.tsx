@@ -3,7 +3,7 @@ import { useState } from "react";
 import { UserTypes } from "../pages/signUp/signUp";
 import { useDispatch, useSelector } from "react-redux";
 import { MdOutlineEmail } from "react-icons/md";
-import { loginR } from "../slices/logInAnSignUp";
+import { addUserToUsers, loginR } from "../slices/logInAnSignUp";
 import { closeAndShowEditWindows } from "../slices/dataControl";
 
 export default function EditUserData() {
@@ -50,14 +50,11 @@ export default function EditUserData() {
       );
       userWithOutLoginUser.push(user);
 
-      localStorage.setItem(
-        "garduationProjectUsers",
-        JSON.stringify(userWithOutLoginUser)
-      );
+      dispatch(addUserToUsers(userWithOutLoginUser));
 
       dispatch(loginR(user));
 
-      dispatch(closeAndShowEditWindows(false))
+      dispatch(closeAndShowEditWindows(false));
     } else {
       setError(true);
     }

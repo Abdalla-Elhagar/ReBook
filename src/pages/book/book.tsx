@@ -22,6 +22,7 @@ export default function BookPage() {
           <div className="bookData">
             <h1 className="bookName">{bookAndUserData.book.bookName}</h1>
             <p className="authorName">{bookAndUserData.book.author}</p>
+            <h3 className="category">{bookAndUserData.book.category}</h3>
             <div className="description">
               {bookAndUserData.book.description}
             </div>
@@ -29,6 +30,7 @@ export default function BookPage() {
 
           <div className="bookOwner">
             <h3 className="title">Book Owner</h3>
+
             <p>{bookAndUserData.user.name}</p>
             <a
               href={`https://mail.google.com/mail/u/0/?fs=1&to=${bookAndUserData.user.email}&su=استفسار&body=&tf=cm`}

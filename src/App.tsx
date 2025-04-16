@@ -10,6 +10,7 @@ import BookPage from "./pages/book/book";
 import Header from "./components/header/header";
 import MyProfile from "./pages/profile/profile";
 import SearchPage from "./pages/searchPage/searchPage";
+import CategoryPage from "./pages/CategoryPage";
 
 function App() {
   const navigate: any = useNavigate();
@@ -31,9 +32,7 @@ function App() {
 
   return (
     <div className="app overflow-hidden">
-      {localStorage.getItem("loginUser") ? (
-        <Header />
-      ) : null}
+      {localStorage.getItem("loginUser") ? <Header /> : null}
 
       <Routes>
         <Route path="/home" element={<Home />} />
@@ -42,6 +41,7 @@ function App() {
         <Route path="/bookPage" element={<BookPage />} />
         <Route path="/myProfile" element={<MyProfile />} />
         <Route path="/searchPage" element={<SearchPage />} />
+        <Route path="/categoryPage" element={<CategoryPage />} />
       </Routes>
     </div>
   );

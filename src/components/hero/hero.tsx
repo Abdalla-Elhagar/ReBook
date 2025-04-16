@@ -1,24 +1,16 @@
-import { useSelector } from "react-redux";
-import { UserTypes, BooksTypes } from "../../pages/signUp/signUp";
-import BookCard from "../bookCard";
+import CategoryList from "./categores/categoryList";
+import CategorySlider from "./categores/categorySlider";
 
 export default function Hero() {
-  const users: UserTypes[] = useSelector(
-    (state: any) => state.userData.arrOfUsers
-  );
-
   return (
-    <section className="heroSection">
-      <div className="container max-sm:px-[10px!important] max-md:flex-col flex-wrap max-md:items-center">
-        {[...users]
-          .reverse()
-          .map((user: UserTypes) =>
-            [...user.books]
-              .reverse()
-              .map((book: BooksTypes) => (
-                <BookCard key={book.id} book={book} user={user} />
-              ))
-          )}
+    <section className="heroSection px-14 max-lg:px-0 max-md:pt-8 pt-28">
+      <div className="container grid grid-cols-7 ">
+        <div className="catrgoryList max-md:col-span-7 mb-5 col-span-2 max-md:border-none max-md:mr-0  border-r mr-10 border-black/25">
+          <CategoryList />
+        </div>
+        <div className="catigorySlider col-span-5 max-md:col-span-7">
+          <CategorySlider />
+        </div>
       </div>
     </section>
   );

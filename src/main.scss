@@ -8,23 +8,44 @@
 @use "./pages/searchPage/searchPage.scss" as *;
 
 * {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .container {
-    padding: 0 60px;
-    margin: 0 auto;
-    position: relative;
-  }
+  padding: 0 5px;
+  margin: 0 auto;
+  position: relative;
+}
+header .container {
+  padding: 0 60px;
+}
 
 button {
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 @media (width < 600px) {
-    .container{
-        padding: 0 30px;
-    }
+  .container {
+    padding: 0 0px;
+  }
+}
+
+.swiper-pagination {
+  display: flex;
+  justify-content: center;
+  .swiper-pagination-bullet {
+    background-color: white;
+  }
+}
+
+.categoryItem:not(:last-child) {
+  border-bottom: 1px solid rgb(137, 137, 137);
+  margin-right: 20px;
+  padding-bottom: 5px;
+}
+.categoryIcon {
+  color: $textColor;
+  cursor: pointer;
 }

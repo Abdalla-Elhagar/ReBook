@@ -7,6 +7,8 @@ import { FaLink } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { addUserToUsers, loginR } from "../slices/logInAnSignUp";
 import { closeAndShowAddBooksWindows } from "../slices/dataControl";
+import { TbCategory } from "react-icons/tb";
+import { categores } from "./hero/categores/categoryList";
 
 export default function AddBook() {
   const logInUser = useSelector((state: any) => state.userData.loginUser);
@@ -19,6 +21,7 @@ export default function AddBook() {
     author: "",
     description: "",
     imageUrl: "",
+    category: "",
   });
 
   function handleAdd() {
@@ -82,7 +85,20 @@ export default function AddBook() {
       {error && book.author.length < 3 && (
         <p className="ERROR">{book.author} is not an author name</p>
       )}
+      <label htmlFor="">Choose Category</label>
+      <div className="input">
+        <TbCategory className="icon" />
 
+        <select
+          className="h-10 w-full pl-10 border  focus:outline-none rounded-lg"
+          value={book.category}
+          onChange={(e) => setBook({ ...book, category: e.target.value })}
+        >
+          {categores.map((category: string) => (
+            <option>{category}</option>
+          ))}
+        </select>
+      </div>
       <label htmlFor="description">Description</label>
       <div className="input">
         <MdOutlineDescription className="icon" />

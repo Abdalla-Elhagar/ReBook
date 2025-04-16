@@ -6,6 +6,8 @@ const initialState = {
   showAddBooks: false,
   search: "",
   users: JSON.parse(localStorage.getItem("garduationProjectUsers") || "[]"),
+  categoryName: "",
+  show2: false,
 };
 const dataControl = createSlice({
   name: "dataControl",
@@ -32,6 +34,12 @@ const dataControl = createSlice({
         JSON.stringify(state.users)
       );
     },
+    sendCategoryName: (state, action) => {
+      state.categoryName = action.payload;
+    },
+    showCategoryList: (state, action) => {
+      state.show2 = action.payload;
+    },
   },
 });
 
@@ -43,4 +51,6 @@ export const {
   closeAndShowAddBooksWindows,
   searchReducer,
   addBook,
+  sendCategoryName,
+  showCategoryList,
 } = dataControl.actions;
