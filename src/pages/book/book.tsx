@@ -23,6 +23,10 @@ export default function BookPage() {
             <h1 className="bookName">{bookAndUserData.book.bookName}</h1>
             <p className="authorName">{bookAndUserData.book.author}</p>
             <h3 className="category">{bookAndUserData.book.category}</h3>
+            <h3 className="case">
+              <span className="font-semibold">Case: </span>
+              {bookAndUserData.book.case || "New"}
+            </h3>
             <div className="description">
               {bookAndUserData.book.description}
             </div>

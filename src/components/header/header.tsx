@@ -54,10 +54,12 @@ export default function Header() {
               initial={{ y: -70 }}
               animate={{ y: 0 }}
             >
-              <TbCategory
-                onClick={handleShow2}
-                className="categoryIcon max-md:flex hidden z-50 text-2xl"
-              />
+              {location.hash === "#/home" && (
+                <TbCategory
+                  onClick={handleShow2}
+                  className="categoryIcon max-md:flex hidden z-50 text-2xl"
+                />
+              )}
             </motion.div>
             <Search />
             <motion.button

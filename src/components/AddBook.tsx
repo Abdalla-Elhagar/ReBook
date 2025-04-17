@@ -10,6 +10,8 @@ import { closeAndShowAddBooksWindows } from "../slices/dataControl";
 import { TbCategory } from "react-icons/tb";
 import { categores } from "./hero/categores/categoryList";
 
+const bookCase = ["New", "As New", "Very Good", "Good"];
+
 export default function AddBook() {
   const logInUser = useSelector((state: any) => state.userData.loginUser);
   const users = useSelector((state: any) => state.userData.arrOfUsers);
@@ -22,6 +24,7 @@ export default function AddBook() {
     description: "",
     imageUrl: "",
     category: "",
+    case: "New",
   });
 
   function handleAdd() {
@@ -96,6 +99,20 @@ export default function AddBook() {
         >
           {categores.map((category: string) => (
             <option>{category}</option>
+          ))}
+        </select>
+      </div>
+      <label htmlFor="book case">Book Case</label>
+      <div className="input">
+        <TbCategory className="icon" />
+
+        <select
+          className="h-10 w-full pl-10 border  focus:outline-none rounded-lg"
+          value={book.case}
+          onChange={(e) => setBook({ ...book, case: e.target.value })}
+        >
+          {bookCase.map((theCase: string) => (
+            <option>{theCase}</option>
           ))}
         </select>
       </div>
