@@ -116,10 +116,10 @@ export default function SignUp() {
         </button>
         <div className="titleBox">
           <div className="logo">
-            <img src={Logo} />
+            <img src={Logo} alt="Logo" />
           </div>
           <h1 className="projectName">ReBook</h1>
-          <h3 className="pageName">Create a new account</h3>
+          <p className="pageName">Create a new account</p>
         </div>
         <form onSubmit={(e) => e.preventDefault()} className="contentBox">
           <label htmlFor="name">Name</label>

@@ -53,10 +53,10 @@ export default function Login() {
       >
         <div className="titleBox">
           <div className="logo">
-            <img src={Logo} />
+            <img src={Logo} alt="Logo" />
           </div>
           <h1 className="projectName">ReBook</h1>
-          <h3 className="pageName">Login to your Account</h3>
+          <p className="pageName">Login to your Account</p>
         </div>
         {error && (
           <div className="errorMessage">
