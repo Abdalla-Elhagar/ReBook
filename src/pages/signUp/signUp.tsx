@@ -1,4 +1,4 @@
-import Logo from "../../assets/projectLogo.png";
+import Logo from "../../assets/projectLogo.webp";
 import { MdOutlineEmail } from "react-icons/md";
 import { CiLock } from "react-icons/ci";
 import { Link } from "react-router";

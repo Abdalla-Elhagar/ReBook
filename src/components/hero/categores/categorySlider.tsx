@@ -1,7 +1,7 @@
-import programmingImage from "./images/programmingImage.png";
-import EducationalImage from "./images/Educational.png";
-import MedicalImage from "./images/MedicalImage.png";
-import StoriesImage from "./images/Stories.png";
+import programmingImage from "./images/programmingImage.webp";
+import EducationalImage from "./images/Educational.webp";
+import MedicalImage from "./images/MedicalImage.webp";
+import StoriesImage from "./images/Stories.webp";
 import { FaArrowRightLong } from "react-icons/fa6";
 // @ts-ignore
 import "swiper/css";
@@ -73,7 +73,7 @@ export default function CategorySlider() {
         className="mySwiper min-h-fit"
       >
         {categorySliderList.map((category: any) => (
-          <SwiperSlide key={category.categoryID} className=" min-h-fit">
+          <SwiperSlide key={category.categoryId} className=" min-h-fit">
             <div className="  flex justify-between max-sm:justify-start max-sm:min-h-[620px] min-h-fit max-sm:flex-col items-center bg-black relative text-white pr-5">
               <img
                 className="w-5/8 h-[500px] max-sm:w-full"

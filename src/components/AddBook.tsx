@@ -97,8 +97,8 @@ export default function AddBook() {
           value={book.category}
           onChange={(e) => setBook({ ...book, category: e.target.value })}
         >
-          {categores.map((category: string) => (
-            <option>{category}</option>
+          {categores.map((category: { id: string; title: string }) => (
+            <option key={category.id}>{category.title}</option>
           ))}
         </select>
       </div>

@@ -3,7 +3,7 @@ import { CiUser } from "react-icons/ci";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { CiLogout } from "react-icons/ci";
-import Logo from "../../assets/projectLogo.png";
+import Logo from "../../assets/projectLogo.webp";
 import Search from "../search";
 import { motion, MotionConfig } from "motion/react";
 import { TbCategory } from "react-icons/tb";

@@ -1,4 +1,4 @@
-import Logo from "../../assets/projectLogo.png";
+import Logo from "../../assets/projectLogo.webp";
 import { MdOutlineEmail } from "react-icons/md";
 import { CiLock } from "react-icons/ci";
 import { Link } from "react-router";
@@ -22,7 +22,7 @@ export default function Login() {
     name: "",
     email: "",
     password: "",
-    phone:"",
+    phone: "",
     confirmPassword: "",
     books: [],
   });
@@ -39,13 +39,18 @@ export default function Login() {
       navigate("/home");
     } else {
       setError(true);
-      console.log(users)
-      console.log(selectedUser)
+      console.log(users);
+      console.log(selectedUser);
     }
   }
   return (
     <div className="login">
-      <motion.div className="loginBox" transition={{duration:1}} initial={{opacity:0}} animate={{opacity:1}}>
+      <motion.div
+        className="loginBox"
+        transition={{ duration: 1 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+      >
         <div className="titleBox">
           <div className="logo">
             <img src={Logo} />

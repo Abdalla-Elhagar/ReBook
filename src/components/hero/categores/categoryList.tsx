@@ -3,11 +3,11 @@ import { Link } from "react-router";
 import { sendCategoryName } from "../../../slices/dataControl";
 
 export const categores = [
-  "Programming",
-  "Stories",
-  "Medical",
-  "Educational",
-  "Scientific",
+  { id: "0", title: "Programming" },
+  { id: "1", title: "Stories" },
+  { id: "2", title: "Medical" },
+  { id: "3", title: "Educational" },
+  { id: "4", title: "Scientific" },
 ];
 
 export default function CategoryList() {
@@ -21,14 +21,14 @@ export default function CategoryList() {
     <>
       <ul className="w-full max-md:hidden ml-3 mt-5 flex flex-col gap-5">
         <h2 className="text-xl font-bold">categores</h2>
-        {categores.map((category: string) => (
-          <li className="categoryItem">
+        {categores.map((category: { id: string; title: string }) => (
+          <li key={category.id} className="categoryItem">
             <Link
               className=" transition-all duration-300 hover:ml-3 block"
-              onClick={() => handleCategory(category)}
+              onClick={() => handleCategory(category.title)}
               to={"/categoryPage"}
             >
-              {category}
+              {category.title}
             </Link>
           </li>
         ))}
@@ -36,14 +36,14 @@ export default function CategoryList() {
       {show2 && (
         <ul className="w-full ml-3 mt-5 max-md:flex hidden flex-col gap-5">
           <h2 className="text-xl font-bold mt-12">categores</h2>
-          {categores.map((category: string) => (
-            <li className="categoryItem">
+          {categores.map((category: { id: string; title: string }) => (
+            <li key={category.id} className="categoryItem">
               <Link
                 className=" transition-all duration-300 hover:ml-3 block"
-                onClick={() => handleCategory(category)}
+                onClick={() => handleCategory(category.title)}
                 to={"/categoryPage"}
               >
-                {category}
+                {category.title}
               </Link>
             </li>
           ))}

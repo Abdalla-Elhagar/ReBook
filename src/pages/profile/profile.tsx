@@ -1,4 +1,4 @@
-import userImage from "../../assets/userImage.png";
+import userImage from "../../assets/userImage.webp";
 import { useDispatch, useSelector } from "react-redux";
 import { IoAddOutline } from "react-icons/io5";
 import { FiEdit } from "react-icons/fi";
