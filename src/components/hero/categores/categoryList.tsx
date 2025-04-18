@@ -3,11 +3,11 @@ import { Link } from "react-router";
 import { sendCategoryName } from "../../../slices/dataControl";
 
 export const categores = [
-  { id: "0", title: "Programming" },
-  { id: "1", title: "Stories" },
-  { id: "2", title: "Medical" },
-  { id: "3", title: "Educational" },
-  { id: "4", title: "Scientific" },
+  { id: "1", title: "Programming" },
+  { id: "2", title: "Stories" },
+  { id: "3", title: "Medical" },
+  { id: "4", title: "Educational" },
+  { id: "5", title: "Scientific" },
 ];
 
 export default function CategoryList() {

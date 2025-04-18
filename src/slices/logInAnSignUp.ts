@@ -27,12 +27,9 @@ const userData = createSlice({
       state.loginUser = action.payload;
       localStorage.setItem("loginUser", JSON.stringify(state.loginUser));
     },
-    updateBooks: (state, action) => {
-      state.loginUser.books.push(action.payload);
-    },
   },
 });
 
 export default userData.reducer;
 
-export const { addUserToUsers, loginR, updateBooks } = userData.actions;
+export const { addUserToUsers, loginR } = userData.actions;

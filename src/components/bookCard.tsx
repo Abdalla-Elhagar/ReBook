@@ -4,7 +4,6 @@ import { useNavigate } from "react-router";
 import { BooksTypes, UserTypes } from "../pages/signUp/signUp";
 import { IoIosRemoveCircle } from "react-icons/io";
 import { addUserToUsers, loginR } from "../slices/logInAnSignUp";
-import { AnimatePresence, motion } from "motion/react";
 // @ts-ignore
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
@@ -50,9 +49,9 @@ export default function BookCard({
     navigate("/bookPage");
   }
   function handleRemove(bookId: number) {
-    const filterdBooks = loginUser.books.filter((book: BooksTypes) => {
-      book.id !== bookId;
-    });
+    const filterdBooks = loginUser.books.filter(
+      (book: BooksTypes) => book.id !== bookId
+    );
 
     const userWithOutLoginUser = users.filter(
       (userFromUsers: UserTypes) => userFromUsers.id !== loginUser.id
@@ -65,50 +64,46 @@ export default function BookCard({
     dispatch(addUserToUsers(userWithOutLoginUser));
   }
   return (
-    <AnimatePresence>
-      <motion.div
-        transition={{ duration: 0.7 }}
-        exit={{ translateX: -50, opacity: 0 }}
-        key={book.id}
+    <div
+      key={book.id}
+      className={`${
+        location.hash == "#/myProfile" && "max-sm:h-40 gap-5"
+      } bookCard  max-sm:w-full ${
+        location.hash !== "#/myProfile" && "min-h-[600px!important]"
+      } `}
+    >
+      <LazyLoadImage
         className={`${
-          location.hash == "#/myProfile" && "max-sm:h-40 gap-5"
-        } bookCard  max-sm:w-full ${
-          location.hash !== "#/myProfile" && "min-h-[600px!important]"
+          location.hash == "#/myProfile" &&
+          "max-sm:h-full max-sm:w-[100px!important]"
         } `}
+        src={book.imageUrl}
+        alt="book image"
+        effect="blur"
+      />
+      <div
+        className={`${
+          location.hash == "#/myProfile"
+        }flex justify-between max-sm:gap-5 w-full p-0 max-sm:flex-col`}
       >
-        <LazyLoadImage
-          className={`${
-            location.hash == "#/myProfile" &&
-            "max-sm:h-full max-sm:w-[100px!important]"
-          } `}
-          src={book.imageUrl}
-          alt="book image"
-          effect="blur"
-        />
-        <div
-          className={`${
-            location.hash == "#/myProfile"
-          }flex justify-between max-sm:gap-5 w-full p-0 max-sm:flex-col`}
-        >
-          <div className="text">
-            <div className="bookName mb-2">{book.bookName}</div>
-            <div className="authorName">{book.author}</div>
-          </div>
-          <div className="buttons flex justify-end">
-            <button
-              onClick={() => handleShow(user.id, book.id)}
-              className="show w-full"
-            >
-              Show
-            </button>
-            {location.hash == "#/myProfile" && (
-              <button onClick={() => handleRemove(book.id)}>
-                <IoIosRemoveCircle className="text-red-600 text-2xl" />
-              </button>
-            )}
-          </div>
+        <div className="text">
+          <div className="bookName mb-2">{book.bookName}</div>
+          <div className="authorName">{book.author}</div>
         </div>
-      </motion.div>
-    </AnimatePresence>
+        <div className="buttons flex justify-end">
+          <button
+            onClick={() => handleShow(user.id, book.id)}
+            className="show w-full"
+          >
+            Show
+          </button>
+          {location.hash == "#/myProfile" && (
+            <button onClick={() => handleRemove(book.id)}>
+              <IoIosRemoveCircle className="text-red-600 text-2xl" />
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
   );
 }

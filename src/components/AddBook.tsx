@@ -23,7 +23,7 @@ export default function AddBook() {
     author: "",
     description: "",
     imageUrl: "",
-    category: "",
+    category: "Programming",
     case: "New",
   });
 
