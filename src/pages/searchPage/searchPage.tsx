@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { BooksTypes, UserTypes } from "../signUp/signUp";
 import BookCard from "../../components/bookCard";
+import { HiEmojiSad } from "react-icons/hi";
 
 export default function SearchPage() {
   const searchingText = useSelector((state: any) => state.dataControl.search);
@@ -26,8 +27,9 @@ export default function SearchPage() {
             <BookCard key={book.id} book={book} user={user} />
           ))
         ) : (
-          <p className="text-2xl text-center mt-10">
-            This book is not available
+          <p className="text-2xl max-sm:text-sm text-center mt-10">
+            This book is not available{" "}
+            <HiEmojiSad className="inline text-amber-300 bg-black size-4 rounded-full" />
           </p>
         )}
       </div>
