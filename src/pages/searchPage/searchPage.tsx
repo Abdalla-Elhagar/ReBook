@@ -8,28 +8,27 @@ export default function SearchPage() {
     (state: any) => state.userData.arrOfUsers
   );
 
-  const books: BooksTypes[] = [];
-  users.map((user: UserTypes) =>
-    user.books.map((book: BooksTypes) => {
-      books.push(book);
-    })
-  );
+  const books: { book: BooksTypes; user: UserTypes }[] = [];
+
+  users.forEach((user) => {
+    user.books.forEach((book) => {
+      if (book.bookName.toLowerCase().includes(searchingText.toLowerCase())) {
+        books.push({ book, user });
+      }
+    });
+  });
 
   return (
     <section className="searchPage">
-      <div className="container flex justify-between max-sm:flex-col items-center">
-        {users.map((user: UserTypes) =>
-          user.books.map((book: BooksTypes) =>
-            book.bookName
-              .toLowerCase()
-              .includes(searchingText.toLowerCase()) ? (
-              <BookCard key={book.id} book={book} user={user} />
-            ) : (
-              <p className=" absolute text-2xl top-full left-1/2 -translate-x-1/2">
-                This book is not available
-              </p>
-            )
-          )
+      <div className="container flex justify-between max-sm:flex-col items-center flex-wrap gap-4">
+        {books.length > 0 ? (
+          books.map(({ book, user }) => (
+            <BookCard key={book.id} book={book} user={user} />
+          ))
+        ) : (
+          <p className="text-2xl text-center mt-10">
+            This book is not available
+          </p>
         )}
       </div>
     </section>
