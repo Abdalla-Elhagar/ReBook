@@ -43,7 +43,7 @@ export default function BookPage() {
               {bookAndUserData.user.email}
             </a>
             <a
-              href={`https://wa.me/${bookAndUserData.user.phone}`}
+              href={`https://wa.me/2${bookAndUserData.user.phone}`}
               target="_blank"
             >
               {bookAndUserData.user.phone}
