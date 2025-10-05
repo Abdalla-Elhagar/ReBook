@@ -11,6 +11,7 @@ export default function CategoryPage() {
   );
   return (
     <section className="postes">
+      <p className="px-[80px] mb-4 max-sm:px-[10px!important] font-semibold md:text-4xl text-2xl">{categoryName} Books</p> 
       <div className="container max-sm:px-[10px!important] max-md:flex-col flex-wrap max-md:items-center">
         {[...users].reverse().map((user: UserTypes) =>
           [...user.books]

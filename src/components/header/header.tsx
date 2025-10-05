@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { CiUser } from "react-icons/ci";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, Links, useNavigate } from "react-router";
 import { CiLogout } from "react-icons/ci";
 import Logo from "../../assets/projectLogo.webp";
 import Search from "../search";
@@ -62,7 +62,8 @@ export default function Header() {
               )}
             </motion.div>
             <Search />
-            <motion.button
+                  {localStorage.getItem("loginUser") ? 
+                  (<motion.button
               transition={{ duration: 0.6, delay: 1.6 }}
               initial={{ y: -70 }}
               animate={{ y: 0 }}
@@ -70,7 +71,11 @@ export default function Header() {
               className="userButton"
             >
               <CiUser className="size-8" />
-            </motion.button>
+            </motion.button>)
+                  : (
+                    <Link className="text-xl text-cyan-600" to="login">login</Link>
+                  )}
+
           </motion.div>
 
           {show && (

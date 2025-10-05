@@ -1,51 +1,86 @@
-@use "./pages/logIn/login.scss" as *;
-@use "./pages/signUp/signUp.scss" as *;
-@use "./pages/book/book.scss" as *;
-@use "./components/header/header.scss" as *;
+// ====================================
+// Main SCSS File - Imports & Global Styles
+// ====================================
+
+// Import order matters - sassItems first for variables/mixins
 @use "./sassItems" as *;
+@use "./components/header/header.scss" as *;
 @use "./components/hero/hero.scss" as *;
-@use "./pages/profile/profile.scss" as *;
-@use "./pages/searchPage/searchPage.scss" as *;
+@use "./pages/pages.scss" as *;
+
+// ====================================
+// Global Reset & Base Styles
+// ====================================
 
 * {
   text-decoration: none;
-}
-
-.container {
-  padding: 0 5px;
-  margin: 0 auto;
-  position: relative;
-}
-header .container {
-  padding: 0 60px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 button {
   border: none;
   background-color: transparent;
   cursor: pointer;
+  font-family: inherit;
 }
 
-@media (width < 600px) {
-  .container {
-    padding: 0 0px;
+// ====================================
+// Container Styles
+// ====================================
+
+.container {
+  padding: 0 $spacing-xs;
+  margin: 0 auto;
+  position: relative;
+
+  // Header specific container
+  header & {
+    padding: 0 60px;
+  }
+
+  // Responsive container
+  @media (width < 600px) {
+    padding: 0;
   }
 }
+
+// ====================================
+// Swiper Pagination Styles
+// ====================================
 
 .swiper-pagination {
-  display: flex;
-  justify-content: center;
+  @include center;
+
   .swiper-pagination-bullet {
     background-color: white;
+    transition: $transition-fast;
+
+    &-active {
+      background-color: $mainColor;
+    }
   }
 }
 
-.categoryItem:not(:last-child) {
-  border-bottom: 1px solid rgb(137, 137, 137);
-  margin-right: 20px;
-  padding-bottom: 5px;
+// ====================================
+// Category Styles
+// ====================================
+
+.categoryItem {
+  &:not(:last-child) {
+    border-bottom: 1px solid rgb(137, 137, 137);
+    margin-right: $spacing-md;
+    padding-bottom: $spacing-xs;
+  }
 }
+
 .categoryIcon {
   color: $textColor;
   cursor: pointer;
+  transition: $transition-fast;
+
+  &:hover {
+    color: $mainColor;
+  }
 }

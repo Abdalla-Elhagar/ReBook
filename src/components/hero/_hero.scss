@@ -1,48 +1,64 @@
 @use "../../sassItems" as *;
 
+// ====================================
+// Hero Section (Posts)
+// ====================================
+
 .postes {
   width: 100%;
-  padding: 40px 0;
-  background-color: $pageColor;
+  padding: $spacing-lg 0;
   padding-top: 100px;
+  background-color: $pageColor;
 
   .container {
-    display: flex;
-    justify-content: center;
+    @include center;
     gap: 30px;
+    flex-wrap: wrap;
 
     .bookCard {
       z-index: 1 !important;
-      width: 300px;
+      width: $book-card-width;
       box-shadow: 0 0 10px rgb(209, 209, 209);
       position: relative;
       height: fit-content;
+      @include card-hover;
+
       img {
-        width: 300px;
-        height: 450px;
+        width: $book-card-width;
+        height: $book-card-height;
+        display: block;
       }
+
       .text {
-        margin-top: 10px;
-        padding: 5px 10px;
+        margin-top: $spacing-sm;
+        padding: $spacing-xs $spacing-sm;
 
         .bookName {
           font-size: 20px;
           font-weight: bold;
+          color: $textColor;
         }
       }
+
       .show {
         display: block;
         font-size: 20px;
         text-align: center;
-        margin: 10px 100px;
+        margin: $spacing-sm 100px;
         width: calc(100% - 200px);
         height: 40px;
         padding: 9px;
-        border-radius: 7px;
+        border-radius: $radius-sm;
         background-color: $mainColor;
         color: white;
         position: relative;
-        bottom: 0px;
+        bottom: 0;
+        transition: $transition-fast;
+        cursor: pointer;
+
+        &:hover {
+          background-color: $downColorGradient;
+        }
       }
     }
   }

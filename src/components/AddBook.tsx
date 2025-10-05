@@ -122,7 +122,7 @@ export default function AddBook() {
         <input
           type="text"
           id="description"
-          placeholder="Enter the book description"
+          placeholder="Enter the description"
           required
           value={book.description}
           onChange={(e: any) =>
@@ -133,7 +133,7 @@ export default function AddBook() {
       {error && book.description.length < 3 && (
         <p className="ERROR">{book.author} is not an author name</p>
       )}
-      <label htmlFor="imageUrl">Book Photo</label>
+      <label htmlFor="imageUrl">Book Image</label>
       <div className="input">
         <FaLink className="icon" />
         <input

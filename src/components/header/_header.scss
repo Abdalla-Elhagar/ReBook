@@ -1,78 +1,125 @@
 @use "../../sassItems" as *;
 
+// ====================================
+// Header Specific Variables
+// ====================================
+
+$header-logo-size: 80px;
+$user-button-size: 25px;
+$user-list-width: 200px;
+$user-list-max-height: 250px;
+$user-list-top: 70px;
+$user-list-right: 50px;
+
+// Colors
+$search-bg: rgb(225, 225, 225);
+$search-border: rgb(188, 188, 188);
+$search-text: rgb(103, 103, 103);
+$border-color: rgb(192, 192, 192);
+$email-color: #434343;
+$logout-color: rgb(255, 22, 22);
+$shadow-color: #cbcbcb;
+
+// ====================================
+// Home Page Background
+// ====================================
+
 .home {
   background-color: $pageColor;
 }
+
+// ====================================
+// Header Component
+// ====================================
+
 header {
   background-color: $pageColor;
   padding: 0;
   z-index: 20;
   position: fixed;
+  width: 100%;
+
   .container {
     @include center;
     justify-content: space-between;
 
+    // Logo
     .logo {
-      width: 80px;
+      width: $header-logo-size;
     }
+
+    // User Button
     .userButton {
-      font-size: 25px;
+      font-size: $user-button-size;
       color: white;
       cursor: pointer;
       background-color: $mainColor;
-      border-radius: 9999px;
-      padding: 7px;
+      border-radius: $radius-full;
+      padding: $spacing-sm;
+      transition: transform $transition-fast;
 
       &:hover {
         transform: scale(1.1);
       }
     }
+
+    // User Dropdown List
     .userList {
       z-index: 999999;
       position: absolute;
-      border-radius: 7px;
-      width: 200px;
-      max-height: 250px;
-      top: 70px;
-      right: 50px;
-      box-shadow: 0px 0px 4px 0px #cbcbcb;
+      border-radius: $radius-sm;
+      width: $user-list-width;
+      max-height: $user-list-max-height;
+      top: $user-list-top;
+      right: $user-list-right;
+      box-shadow: 0 0 4px 0 $shadow-color;
       overflow: hidden;
-
       background-color: white;
+
+      // Item hover effect
       .item {
         width: 105%;
-        transform: translateX(-5px);
-        transition: 0.3s;
+        transform: translateX(-$spacing-xs);
+        transition: $transition-fast;
+
         &:hover {
-          transform: translateX(0px);
+          transform: translateX(0);
         }
       }
-      > :not(:last-child) {
-        border-bottom: 1px solid rgb(192, 192, 192);
-      }
-      > div {
-        padding: 10px 0 10px 20px;
-        & .email {
-          font-size: 10px;
 
-          color: #434343;
+      // Separator between items
+      > :not(:last-child) {
+        border-bottom: 1px solid $border-color;
+      }
+
+      // General item styling
+      > div {
+        padding: $spacing-sm 0 $spacing-sm $spacing-md;
+        transition: $transition-fast;
+
+        .email {
+          font-size: 10px;
+          color: $email-color;
           letter-spacing: 1px;
         }
       }
+
+      // Account link
       .account {
         display: block;
-        padding: 10px 0 10px 20px;
+        padding: $spacing-sm 0 $spacing-sm $spacing-md;
         color: $textColor;
       }
-      .logOut {
-        display: flex;
-        align-items: center;
-        width: 100%;
-        gap: 5px;
-        padding: 10px 0;
 
-        padding-left: 20px;
-        color: rgb(255, 22, 22);
+      // Logout button
+      .logOut {
+        @include center;
+        justify-content: flex-start;
+        width: 100%;
+        gap: $spacing-xs;
+        padding: $spacing-sm 0 $spacing-sm $spacing-md;
+        color: $logout-color;
+        cursor: pointer;
 
         .logOutIcon {
           font-size: 18px;
@@ -82,35 +129,49 @@ header {
   }
 }
 
+// ====================================
+// Search Components
+// ====================================
+
 .search {
   input {
-    background-color: rgb(225, 225, 225);
-    padding: 7px 10px;
-    border: 1px solid rgb(188, 188, 188);
-    border-radius: 5px;
-    color: rgb(103, 103, 103);
+    background-color: $search-bg;
+    padding: $spacing-sm $spacing-sm;
+    border: 1px solid $search-border;
+    border-radius: $spacing-xs;
+    color: $search-text;
+    transition: $transition-fast;
 
     &:focus {
       outline: none;
+      border-color: $mainColor;
     }
   }
-}
-.searchIcon {
-  color: rgb(103, 103, 103);
+
+  .searchIcon {
+    color: $search-text;
+  }
 }
 
 .resposiveSearch {
   input {
     background-color: transparent;
     border: 2px solid white;
-    padding: 7px 10px;
-    border-radius: 99999px;
+    padding: $spacing-sm $spacing-sm;
+    border-radius: $radius-full;
     color: white;
+    transition: $transition-fast;
 
     &:focus {
       outline: none;
+      border-color: white;
+    }
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.7);
     }
   }
+
   .searchIcon {
     color: white;
   }

@@ -1,0 +1,460 @@
+@use "../sassItems" as *;
+
+// ====================================
+// Global App Styles
+// ====================================
+
+.app {
+  padding: 0;
+  font-family: sans-serif;
+
+  // ====================================
+  // Authentication Pages (Login & SignUp)
+  // ====================================
+
+  .login,
+  .signUp {
+    @include center;
+    width: 100%;
+    min-height: 100vh;
+    @include gradient-background;
+    padding: $spacing-md 0;
+
+    .loginBox,
+    .signUpBox {
+      @include box-base;
+      color: $textColor;
+      width: $auth-box-width;
+      min-height: fit-content;
+
+      .signUpBox {
+        min-height: 600px;
+      }
+
+      // Title Section
+      .titleBox {
+        padding: $spacing-md;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+
+        .logo {
+          width: 100%;
+
+          img {
+            margin: 0 auto;
+            width: 100px;
+          }
+        }
+
+        .projectName {
+          font-weight: bold;
+          line-height: 1;
+          margin: -$spacing-xs 0;
+        }
+
+        .pageName {
+          font-weight: lighter;
+          line-height: 1;
+        }
+      }
+
+      // Error Message (Login only)
+      .errorMessage {
+        @include center;
+        justify-content: flex-start;
+        gap: $spacing-sm;
+        width: calc(100% - $spacing-lg);
+        margin-left: $spacing-md;
+        padding: $spacing-sm $spacing-xs;
+        color: red;
+        border: 1px solid red;
+        border-radius: $radius-sm;
+        background-color: rgba(255, 0, 0, 0.063);
+
+        .errorIcon {
+          font-size: 20px;
+        }
+      }
+
+      // Content Box
+      .contentBox {
+        padding: $spacing-md;
+
+        label {
+          font-size: 18px;
+          display: block;
+        }
+
+        .input {
+          margin: $spacing-xs 0 15px 0;
+          position: relative;
+          color: $secondTextColor;
+
+          .icon {
+            @include icon-absolute;
+          }
+
+          input {
+            @include input-base;
+          }
+        }
+
+        .ERROR {
+          @include ERROR;
+          margin-bottom: $spacing-sm;
+          margin-top: -$spacing-sm;
+        }
+
+        .loginButton,
+        .signUpButton,
+        .editButton {
+          margin: $spacing-md auto;
+          text-align: center;
+
+          button {
+            @include button-primary;
+          }
+        }
+      }
+
+      // Footer Box
+      .footerBox {
+        @include center;
+        @include box-base;
+        border-top: 1px solid #ddd;
+        box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        padding: $spacing-sm;
+
+        .toSignUp,
+        .toLogin {
+          margin-left: $spacing-xs;
+          border: none;
+          background-color: transparent;
+          color: $mainColor;
+          transition: $transition-fast;
+          cursor: pointer;
+
+          &:hover {
+            color: $downColorGradient;
+          }
+        }
+      }
+    }
+  }
+
+  // ====================================
+  // Profile Page
+  // ====================================
+
+  .myProfile {
+    min-height: 100vh;
+    @include gradient-background;
+    padding-top: 100px;
+
+    .window {
+      @include box-base;
+      width: 500px;
+      min-height: 500px;
+
+      .closeIcon {
+        font-size: 20px;
+        transition: $transition-fast;
+
+        &:hover {
+          color: rgb(255, 41, 37);
+        }
+      }
+    }
+
+    .profileData {
+      background-color: white;
+      width: $profile-width;
+      min-height: 500px;
+      margin-top: 100px;
+      border-radius: $radius-xl;
+      position: relative;
+
+      .editIcon {
+        color: $textColor;
+        transition: $transition-fast;
+
+        &:hover {
+          color: $mainColor;
+        }
+      }
+
+      .image {
+        width: 100px;
+        height: 100px;
+        padding: $spacing-sm;
+        border-radius: $radius-full;
+        margin-top: -$spacing-xl;
+        background-color: white;
+        box-shadow: 0 0 20px rgba(148, 148, 148, 0.627);
+        overflow: hidden;
+      }
+
+      .name {
+        font-size: 40px;
+        font-weight: 600;
+        margin-bottom: 0;
+      }
+
+      .email,
+      .phone {
+        font-size: 25px;
+        margin-bottom: $spacing-sm;
+      }
+
+      .addBook {
+        .addBookIcone {
+          padding: $spacing-sm;
+          background-color: $mainColor;
+          font-size: $spacing-xl;
+          border-radius: $radius-md;
+          color: white;
+          transition: $transition-fast;
+          cursor: pointer;
+
+          &:hover {
+            background-color: $downColorGradient;
+          }
+        }
+      }
+
+      .books {
+        margin-top: $spacing-md;
+
+        .bookCard {
+          box-shadow: 0 0 20px rgba(178, 178, 178, 0.553);
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding-right: $spacing-md;
+
+          img {
+            width: 70px;
+          }
+
+          .text {
+            font-size: 18px;
+            font-weight: bold;
+          }
+
+          .show {
+            background-color: $mainColor;
+            color: white;
+            padding: $spacing-sm;
+            border-radius: $radius-sm;
+          }
+        }
+      }
+    }
+  }
+}
+
+// ====================================
+// Shared Components (Outside .app)
+// ====================================
+
+// Content Box (for SignUp standalone)
+.contentBox {
+  padding: $spacing-md;
+
+  label {
+    font-size: 18px;
+    display: block;
+  }
+
+  .input {
+    margin: $spacing-xs 0 15px 0;
+    position: relative;
+    color: $secondTextColor;
+
+    .icon {
+      @include icon-absolute;
+    }
+
+    input {
+      @include input-base;
+    }
+  }
+
+  .ERROR {
+    @include ERROR;
+    margin-bottom: $spacing-sm;
+    margin-top: -$spacing-sm;
+  }
+
+  .signUpButton,
+  .editButton {
+    margin: $spacing-md auto;
+    text-align: center;
+
+    button {
+      @include button-primary;
+    }
+  }
+}
+
+// Footer Box (for SignUp standalone)
+.footerBox {
+  @include center;
+  @include box-base;
+  border-top: 1px solid #ddd;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  padding: $spacing-sm;
+
+  .toLogin {
+    margin-left: $spacing-xs;
+    border: none;
+    background-color: transparent;
+    color: $mainColor;
+    transition: $transition-fast;
+    cursor: pointer;
+
+    &:hover {
+      color: $downColorGradient;
+    }
+  }
+}
+
+// ====================================
+// Book Page
+// ====================================
+
+.bookPage {
+  min-height: 100vh;
+  @include gradient-background;
+  padding-top: 100px;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    @include box-base;
+    max-width: 900px;
+    padding: 0;
+
+    .bookImg {
+      width: 400px;
+      border-top-left-radius: $radius-md;
+      border-bottom-left-radius: $radius-md;
+    }
+
+    .right {
+      max-width: calc(100% - 425px);
+      padding: $spacing-sm;
+
+      .bookData {
+        margin-bottom: $spacing-xl;
+        overflow-wrap: break-word;
+
+        .bookName {
+          font-size: 30px;
+          font-weight: bold;
+        }
+
+        .authorName {
+          font-size: 20px;
+          margin-top: -$spacing-md;
+          margin-bottom: $spacing-md;
+        }
+
+        .category {
+          margin: $spacing-xs 0;
+        }
+
+        .case {
+          margin-bottom: $spacing-xs;
+        }
+      }
+
+      .bookOwner {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-xs;
+
+        .title {
+          font-size: 25px;
+          font-weight: bold;
+        }
+
+        > p,
+        a {
+          font-size: 20px;
+          transition: $transition-slow;
+        }
+
+        a:hover {
+          color: $mainColor;
+        }
+      }
+    }
+  }
+}
+
+// ====================================
+// Search Page
+// ====================================
+
+.searchPage {
+  @include box-base;
+  width: 100%;
+  padding: $spacing-lg 0;
+  min-height: 100vh;
+
+  .container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding-top: 100px;
+    flex-wrap: wrap;
+
+    .bookCard {
+      z-index: 1 !important;
+      width: $book-card-width;
+      box-shadow: 0 0 10px rgb(209, 209, 209);
+      position: relative;
+      height: fit-content;
+      @include card-hover;
+
+      img {
+        width: $book-card-width;
+        height: $book-card-height;
+        display: block;
+      }
+
+      .text {
+        margin-top: $spacing-sm;
+        padding: $spacing-xs $spacing-sm;
+
+        .bookName {
+          font-size: 20px;
+          font-weight: bold;
+        }
+      }
+
+      .show {
+        display: block;
+        font-size: 20px;
+        text-align: center;
+        margin: $spacing-sm 100px;
+        width: calc(100% - 200px);
+        height: 40px;
+        padding: 9px;
+        border-radius: $radius-sm;
+        background-color: $mainColor;
+        color: white;
+        position: relative;
+        bottom: 0;
+        transition: $transition-fast;
+
+        &:hover {
+          background-color: $downColorGradient;
+        }
+      }
+    }
+  }
+}

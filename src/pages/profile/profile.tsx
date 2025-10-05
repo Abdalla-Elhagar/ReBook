@@ -23,8 +23,14 @@ export default function MyProfile() {
     (state: any) => state.dataControl.showAddBooks
   );
 
+
+  const loginUser1 = localStorage.getItem("loginUser");
+ 
+
   return (
+    
     <AnimatePresence>
+      { loginUser1 ?
       <div className="myProfile flex relative">
         {(showEdit || showAddBooks) && (
           <motion.div
@@ -101,6 +107,8 @@ export default function MyProfile() {
           </motion.div>
         </div>
       </div>
+      : <div className="flex justify-center items-center">You must login first</div>
+    }
     </AnimatePresence>
   );
 }
