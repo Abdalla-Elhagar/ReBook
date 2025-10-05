@@ -43,7 +43,7 @@ export default function Header() {
             initial={{ y: -70 }}
             animate={{ y: 0 }}
           >
-            <Link to="/home">
+            <Link to="/">
               <img src={Logo} alt="logo" className="logo" />
             </Link>
           </motion.div>
@@ -62,20 +62,27 @@ export default function Header() {
               )}
             </motion.div>
             <Search />
-                  {localStorage.getItem("loginUser") ? 
-                  (<motion.button
-              transition={{ duration: 0.6, delay: 1.6 }}
-              initial={{ y: -70 }}
-              animate={{ y: 0 }}
-              onClick={handleShow}
-              className="userButton"
-            >
-              <CiUser className="size-8" />
-            </motion.button>)
-                  : (
-                    <Link className="text-xl text-cyan-600" to="login">login</Link>
-                  )}
-
+            {localStorage.getItem("loginUser") ? (
+              <motion.button
+                transition={{ duration: 0.6, delay: 1.6 }}
+                initial={{ y: -70 }}
+                animate={{ y: 0 }}
+                onClick={handleShow}
+                className="userButton"
+              >
+                <CiUser className="size-8" />
+              </motion.button>
+            ) : (
+              <motion.div
+                transition={{ duration: 0.6, delay: 1.6 }}
+                initial={{ y: -70 }}
+                animate={{ y: 0 }}
+              >
+                <Link className="text-xl text-cyan-600" to="login">
+                  login
+                </Link>
+              </motion.div>
+            )}
           </motion.div>
 
           {show && (
