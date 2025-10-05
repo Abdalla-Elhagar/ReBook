@@ -149,7 +149,7 @@ export default function AddBook() {
         <p className="ERROR">{book.imageUrl} is not a url</p>
       )}
       <div className="editButton">
-        <button
+        <button aria-label="button"
           onClick={() => {
             handleAdd();
           }}

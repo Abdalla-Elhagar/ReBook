@@ -140,7 +140,7 @@ export default function EditUserData() {
       )}
 
       <div className="editButton">
-        <button
+        <button aria-label="button"
           onClick={() => {
             handleEdit();
           }}

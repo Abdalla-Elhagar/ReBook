@@ -91,14 +91,14 @@ export default function BookCard({
           <div className="authorName">{book.author}</div>
         </div>
         <div className="buttons flex justify-end">
-          <button
+          <button aria-label="button"
             onClick={() => handleShow(user.id, book.id)}
             className="show w-full"
           >
             Show
           </button>
           {location.hash == "#/myProfile" && (
-            <button onClick={() => handleRemove(book.id)}>
+            <button aria-label="button" onClick={() => handleRemove(book.id)}>
               <IoIosRemoveCircle className="text-red-600 text-2xl" />
             </button>
           )}

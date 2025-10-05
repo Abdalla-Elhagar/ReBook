@@ -102,7 +102,7 @@ export default function SignUp() {
               onChange={(e: any) => setReset(e.target.value)}
             />
             {reset === "153" && (
-              <button
+              <button aria-label="button"
                 onClick={handleReset}
                 className="flex text-white bg-[#0284c7!important] px-6 py-2 rounded"
               >
@@ -111,7 +111,7 @@ export default function SignUp() {
             )}
           </div>
         )}
-        <button onClick={handleShow} className=" absolute top-0 right-0">
+        <button aria-label="button" onClick={handleShow} className=" absolute top-0 right-0">
           .
         </button>
         <div className="titleBox">
@@ -212,7 +212,7 @@ export default function SignUp() {
           )}
 
           <div className="signUpButton">
-            <button onClick={handleSignUp}>Sign Up</button>
+            <button aria-label="button" onClick={handleSignUp}>Sign Up</button>
           </div>
         </form>
         <div className="footerBox">

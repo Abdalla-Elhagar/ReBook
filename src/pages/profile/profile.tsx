@@ -40,7 +40,7 @@ export default function MyProfile() {
             className="windowBackGround fixed w-full h-screen top-0 left-0 bg-black/80 z-50 flex justify-around items-center"
           >
             <div className="window editWindow relative ">
-              <button
+              <button aria-label="button"
                 onClick={() => {
                   dispatch(closeAndShowEditWindows(false));
                   dispatch(closeAndShowAddBooksWindows(false));
@@ -61,7 +61,7 @@ export default function MyProfile() {
             animate={{ opacity: 1 }}
             className="profileData flex flex-col items-center max-sm:w-full"
           >
-            <button
+            <button aria-label="button"
               onClick={() => {
                 dispatch(closeAndShowEditWindows(true));
               }}
@@ -86,7 +86,7 @@ export default function MyProfile() {
             <div className="userBooks w-full px-6 mt-10">
               <div className="titleAndAddBook flex justify-between items-center px-5">
                 <h2 className="text-3xl font-bold">My Books</h2>
-                <button
+                <button aria-label="button"
                   onClick={() => {
                     dispatch(closeAndShowAddBooksWindows(true));
                   }}

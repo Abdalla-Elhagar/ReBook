@@ -92,7 +92,7 @@ export default function Login() {
             />
           </div>
           <div className="loginButton">
-            <button onClick={handleLogin}>Login</button>
+            <button aria-label="button" onClick={handleLogin}>Login</button>
           </div>
         </form>
         <div className="footerBox">

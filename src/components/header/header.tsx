@@ -78,7 +78,7 @@ export default function Header() {
                 initial={{ y: -70 }}
                 animate={{ y: 0 }}
               >
-                <Link className="text-xl text-cyan-600" to="login">
+                <Link className="text-xl text-[#135E76]" to="login">
                   login
                 </Link>
               </motion.div>
@@ -104,7 +104,7 @@ export default function Header() {
               >
                 My Profile
               </Link>
-              <button
+              <button aria-label="button"
                 className="item logOut"
                 onClick={() => {
                   setShow(false);

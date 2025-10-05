@@ -38,7 +38,7 @@ export default function Search() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <button
+        <button aria-label="button"
           className="absolute right-2 top-1/2 -translate-y-1/2"
           onClick={handleSearch}
         >
@@ -61,7 +61,7 @@ export default function Search() {
           onClick={handleClick}
           className="fixed top-0 left-0 bg-black/20 flex justify-center h-screen w-screen"
         >
-          <button
+          <button aria-label="button"
             className=" text-white absolute top-2 right-2 "
             onClick={() => setShow(false)}
           >
@@ -78,7 +78,7 @@ export default function Search() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
-            <button
+            <button aria-label="button"
               className="absolute right-2 top-1/2 -translate-y-1/2"
               onClick={handleSearch}
             >
