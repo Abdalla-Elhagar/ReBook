@@ -15,7 +15,7 @@ function App() {
     <div className="app overflow-hidden">
       <Header />
       <Routes>
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/bookPage" element={<BookPage />} />
