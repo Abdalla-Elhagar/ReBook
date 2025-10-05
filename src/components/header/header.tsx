@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { CiUser } from "react-icons/ci";
 import { useState } from "react";
-import { Link, Links, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { CiLogout } from "react-icons/ci";
 import Logo from "../../assets/projectLogo.webp";
 import Search from "../search";
