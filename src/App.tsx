@@ -18,7 +18,7 @@ import { handleLogedInUser } from "./slices/logInAndSignUp";
 function App() {
   const dispatch = useDispatch()
 
-  const [users, setUsers] = useState([])
+  const [, setUsers] = useState([])
     useEffect(()=> {
       const fetchUsersData= async ()=>{
         const usersRef = await usersData()
@@ -35,7 +35,7 @@ function App() {
 
   return (
     <div className="app overflow-hidden">
-      {localStorage.getItem("token") && <Header />}
+      {location.hash !== "#/signUp" && location.hash !== "#/login" && <Header />}
       
       <Routes>
         <Route path="/" element={<Home />} />
