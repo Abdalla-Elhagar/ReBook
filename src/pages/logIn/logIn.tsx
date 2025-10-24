@@ -43,6 +43,8 @@ export default function Login() {
     dispatch(login({ token: data, email: user.email }));
 
     navigate("/");
+        location.reload()
+
   }
   return (
     <div className="login">

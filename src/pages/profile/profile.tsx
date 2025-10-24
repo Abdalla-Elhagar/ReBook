@@ -66,7 +66,7 @@ export default function MyProfile() {
               </div>
               <div className="books flex justify-center items-center flex-col gap-5 py-5">
                 {userBooks.map((book: BooksTypes) => (
-                  <BookCard book={book} />
+                  <BookCard key={book._id} book={book} />
                 ))}
                 {userBooks.length === 0 && (
                   <div className="Error">You diden't add any book</div>

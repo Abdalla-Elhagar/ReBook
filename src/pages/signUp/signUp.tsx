@@ -63,6 +63,8 @@ export default function SignUp() {
     dispatch(login({ token: data, email: user.email }));
 
     navigate("/");
+
+    location.reload()
   }
 
   return (

@@ -7,6 +7,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { useEffect, useState } from "react";
 import { BooksTypes, UserTypes } from "../types/dataTypes";
+import RemoveBook from "./RemoveBook";
 
 export default function BookCard({book}: {book: BooksTypes}) {
 
@@ -42,8 +43,8 @@ export default function BookCard({book}: {book: BooksTypes}) {
   return (
     <div
       key={book._id}
-      className={`${
-        location.hash == "#/myProfile" && "max-sm:h-40 gap-5"
+      className={`relative ${
+        location.hash == "#/myProfile" && "h-20 gap-5"
       } bookCard  max-sm:w-full ${
         location.hash !== "#/myProfile" && "min-h-[600px!important]"
       } `}
@@ -59,8 +60,8 @@ export default function BookCard({book}: {book: BooksTypes}) {
       />
       <div
         className={`${
-          location.hash == "#/myProfile"
-        }flex justify-between max-sm:gap-5 w-full p-0 max-sm:flex-col`}
+          location.hash == "#/myProfile" && "flex justify-between items-center w-full "
+        }`}
       >
         <div className="text">
           <div className="bookName mb-2">{book.bookName}</div>
@@ -69,10 +70,15 @@ export default function BookCard({book}: {book: BooksTypes}) {
         <div className="buttons flex justify-end">
           <button aria-label="button"
             onClick={() => handleShow()}
-            className="show w-full"
+            className={`show  ${ location.hash !== "#/myProfile" && "w-[100%!important]" }`}
           >
             Show
           </button>
+
+        {
+          location.hash === "#/myProfile" && <RemoveBook bookId={book._id} />
+        }
+          
         </div>
       </div>
     </div>

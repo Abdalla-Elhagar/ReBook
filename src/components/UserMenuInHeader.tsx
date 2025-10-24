@@ -5,11 +5,8 @@ import { motion } from "motion/react";
 import { controlInUserMenuInHeader } from "../slices/dataControl";
 
 const UserMenuInHeader = () => {
-
-
-  const loginUser = useSelector((state:any)=> state.userData.logedInUser)
+  const loginUser = useSelector((state: any) => state.userData.logedInUser);
   const navigate = useNavigate();
-
 
   const dispatch = useDispatch();
 
@@ -17,6 +14,7 @@ const UserMenuInHeader = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("email");
     navigate("/login");
+    location.reload();
   }
 
   const handleControlInUserMenuInHeader = () => {
