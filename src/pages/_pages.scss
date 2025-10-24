@@ -39,7 +39,9 @@
         text-align: center;
 
         .logo {
-          width: 100%;
+          width: fit-content;
+          margin-left: auto;
+          margin-right: auto;
 
           img {
             margin: 0 auto;
@@ -207,21 +209,6 @@
         margin-bottom: $spacing-sm;
       }
 
-      .addBook {
-        .addBookIcone {
-          padding: $spacing-sm;
-          background-color: $mainColor;
-          font-size: $spacing-xl;
-          border-radius: $radius-md;
-          color: white;
-          transition: $transition-fast;
-          cursor: pointer;
-
-          &:hover {
-            background-color: $downColorGradient;
-          }
-        }
-      }
 
       .books {
         margin-top: $spacing-md;
@@ -332,22 +319,24 @@
 
   .container {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     @include box-base;
     max-width: 900px;
     padding: 0;
+    gap: 20px;
 
     .bookImg {
-      width: 400px;
+      height: 100%;
       border-top-left-radius: $radius-md;
       border-bottom-left-radius: $radius-md;
     }
 
     .right {
-      max-width: calc(100% - 425px);
+      max-width: 50%;
       padding: $spacing-sm;
 
       .bookData {
+        
         margin-bottom: $spacing-xl;
         overflow-wrap: break-word;
 
@@ -366,7 +355,7 @@
           margin: $spacing-xs 0;
         }
 
-        .case {
+        .status {
           margin-bottom: $spacing-xs;
         }
       }

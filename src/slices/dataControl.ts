@@ -1,21 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  bookData: { user: {}, book: {} },
+  bookData: {},
   showEdit: false,
   showAddBooks: false,
   search: "",
   users: JSON.parse(localStorage.getItem("garduationProjectUsers") || "[]"),
   categoryName: "",
-  show2: false,
+  show: false,
 };
 const dataControl = createSlice({
   name: "dataControl",
   initialState,
   reducers: {
     showBookData: (state, action) => {
-      state.bookData.user = action.payload.user;
-      state.bookData.book = action.payload.book;
+      state.bookData = action.payload;
     },
     closeAndShowEditWindows: (state, action) => {
       state.showEdit = action.payload;
@@ -37,9 +36,9 @@ const dataControl = createSlice({
     sendCategoryName: (state, action) => {
       state.categoryName = action.payload;
     },
-    showCategoryList: (state, action) => {
-      state.show2 = action.payload;
-    },
+    controlInUserMenuInHeader: (state,action) => {
+      state.show = action.payload
+    }
   },
 });
 
@@ -52,5 +51,5 @@ export const {
   searchReducer,
   addBook,
   sendCategoryName,
-  showCategoryList,
+  controlInUserMenuInHeader,
 } = dataControl.actions;

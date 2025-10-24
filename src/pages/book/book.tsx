@@ -1,54 +1,67 @@
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
+import { usersData } from "../../api/usersData";
+import { UserTypes } from "../../types/dataTypes";
 
 export default function BookPage() {
-  const bookAndUserData = useSelector(
+  const bookData = useSelector(
     (state: any) => state.dataControl.bookData
   );
 
-  const loginUser1 = localStorage.getItem("loginUser");
+  const [users, setUsers] = useState<UserTypes[]>([])
+    useEffect(()=> {
+      const fetchUsersData= async ()=>{
+        const usersRef = await usersData()
+  
+        if (usersRef) setUsers(usersRef)
+      }
+    fetchUsersData()
+    },[])
+  
+
+    const bookUser = users.find((user: UserTypes)=> user._id === bookData.owner)
+    
+    if (!bookUser) return null
   return (
     <div className="bookPage py-10 min-h-screen flex">
-      {loginUser1 ? (
-        <div className="container max-md:flex-col items-center">
+      {localStorage.getItem("token") ? (
+        <div className="container max-md:flex-col md:justify-center md:w-1/2 w-full  md:items-center">
           <img
             src={
-              bookAndUserData.book.imageUrl
-                ? bookAndUserData.book.imageUrl
-                : "asd"
+              bookData.imageUrl
+                ? bookData.imageUrl
+                : ""
             }
             alt="book image"
-            className="bookImg"
+            className="bookImg md:w-1/2 w-full"
           />
           <div className="right max-md:max-w-[100%!important]">
             <div className="bookData">
-              <h1 className="bookName">{bookAndUserData.book.bookName}</h1>
-              <p className="authorName">{bookAndUserData.book.author}</p>
-              <h3 className="category">{bookAndUserData.book.category}</h3>
-              <h3 className="case">
-                <span className="font-semibold">Case: </span>
-                {bookAndUserData.book.case || "New"}
-              </h3>
-              <div className="description">
-                {bookAndUserData.book.description}
+              <h1 className="bookName">{bookData.bookName}</h1>
+              <p className="authorName">{bookData.author}</p>
+              <h3 className="category font-semibold">{bookData.category}</h3>
+              <h3 className="status font-semibold">{bookData.status || "New"}</h3>
+              <div className="description whitespace-pre-wrap">
+                {bookData.description}
               </div>
             </div>
 
             <div className="bookOwner">
               <h3 className="title">Book Owner</h3>
 
-              <p>{bookAndUserData.user.name}</p>
+              <p>{bookUser.name}</p>
               <a
-                href={`https://mail.google.com/mail/u/0/?fs=1&to=${bookAndUserData.user.email}&su=استفسار&body=&tf=cm`}
+                href={`https://mail.google.com/mail/u/0/?fs=1&to=${bookUser.email}&su=استفسار&body=&tf=cm`}
                 target="_blank"
               >
-                {bookAndUserData.user.email}
+                {bookUser.email}
               </a>
               <a
-                href={`https://wa.me/2${bookAndUserData.user.phone}`}
+                href={`https://wa.me/2${bookUser.phone}`}
                 target="_blank"
               >
-                {bookAndUserData.user.phone}
+                {bookUser.phone}
               </a>
             </div>
           </div>

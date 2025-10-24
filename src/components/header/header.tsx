@@ -1,34 +1,20 @@
-import { useDispatch, useSelector } from "react-redux";
 import { CiUser } from "react-icons/ci";
-import { useState } from "react";
-import { Link, useNavigate } from "react-router";
-import { CiLogout } from "react-icons/ci";
+import { Link } from "react-router-dom";
 import Logo from "../../assets/projectLogo.webp";
 import Search from "../search";
 import { motion, MotionConfig } from "motion/react";
-import { TbCategory } from "react-icons/tb";
-import { showCategoryList } from "../../slices/dataControl";
+import { useDispatch, useSelector } from "react-redux";
+import { controlInUserMenuInHeader } from "../../slices/dataControl";
+import UserMenuInHeader from "../UserMenuInHeader";
 
 export default function Header() {
-  const dispatch = useDispatch();
-  const loginUser = useSelector((state: any) => state.userData.loginUser);
-  const [show, setShow] = useState(false);
-  const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const show = useSelector((state:any) => state.dataControl.show)
+    
   function handleShow() {
-    setShow(!show);
+    dispatch(controlInUserMenuInHeader(!show))
   }
-  function handleLogOut() {
-    localStorage.removeItem("loginUser");
-    navigate("/logIn");
-  }
-  const [, setShow2] = useState(false);
-  function handleShow2() {
-    setShow2((prevState: boolean) => {
-      const newState = !prevState;
-      dispatch(showCategoryList(newState));
-      return newState;
-    });
-  }
+
   return (
     <MotionConfig>
       <motion.header
@@ -54,15 +40,10 @@ export default function Header() {
               initial={{ y: -70 }}
               animate={{ y: 0 }}
             >
-              {location.hash === "#/home" && (
-                <TbCategory
-                  onClick={handleShow2}
-                  className="categoryIcon max-md:flex hidden z-50 text-2xl"
-                />
-              )}
+              
             </motion.div>
             <Search />
-            {localStorage.getItem("loginUser") ? (
+            {localStorage.getItem("token") ? (
               <motion.button
                 transition={{ duration: 0.6, delay: 1.6 }}
                 initial={{ y: -70 }}
@@ -85,37 +66,7 @@ export default function Header() {
             )}
           </motion.div>
 
-          {show && (
-            <motion.div
-              transition={{ duration: 0.3 }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="userList z-50"
-            >
-              <div className="item">
-                <div className="name">{loginUser.name}</div>
-                <div className="email">{loginUser.email}</div>
-              </div>
-              <Link
-                onClick={() => setShow(false)}
-                to="/myProfile"
-                className="item account z-50"
-              >
-                My Profile
-              </Link>
-              <button aria-label="button"
-                className="item logOut"
-                onClick={() => {
-                  setShow(false);
-                  handleLogOut();
-                }}
-              >
-                <CiLogout className="logOutIcon" />
-                <p className="text">Log Out</p>
-              </button>
-            </motion.div>
-          )}
+          {show && <UserMenuInHeader />}
         </div>
       </motion.header>
     </MotionConfig>

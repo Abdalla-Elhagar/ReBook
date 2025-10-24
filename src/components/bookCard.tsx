@@ -1,71 +1,47 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { showBookData } from "../slices/dataControl";
-import { useNavigate } from "react-router";
-import { BooksTypes, UserTypes } from "../pages/signUp/signUp";
-import { IoIosRemoveCircle } from "react-icons/io";
-import { addUserToUsers, loginR } from "../slices/logInAnSignUp";
+import { useNavigate } from "react-router-dom";
+import { usersData } from "../api/usersData";
 // @ts-ignore
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { useEffect, useState } from "react";
+import { BooksTypes, UserTypes } from "../types/dataTypes";
 
-export default function BookCard({
-  book,
-  user,
-}: {
-  book: BooksTypes;
-  user: UserTypes;
-}) {
-  const users: UserTypes[] = useSelector(
-    (state: any) => state.userData.arrOfUsers
-  );
-  const loginUser: UserTypes = useSelector(
-    (state: any) => state.userData.loginUser
-  );
+export default function BookCard({book}: {book: BooksTypes}) {
+
+  const [users, setUsers] = useState([])
+  useEffect(()=> {
+    const fetchUsersData= async ()=>{
+      const usersRef = await usersData()
+
+      if (usersRef) setUsers(usersRef)
+    }
+  fetchUsersData()
+  },[])
+
+
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  function handleShow(userId: number, bookId: number) {
-    console.log("📌 userId:", userId);
-    console.log("📌 bookId:", bookId);
-
-    const foundUser = users.find((u) => u.id === userId);
+  function handleShow() {
+    const foundUser = users.find((u:UserTypes) => u._id === book.owner);
     if (!foundUser) {
-      console.log("❌ User not found");
+      console.log("User not found");
       return;
     }
 
-    console.log("✅ Found user:", foundUser);
+    
 
-    const foundBook = foundUser.books.find((b) => b.id === bookId);
-    if (!foundBook) {
-      console.log("❌ Book not found in user.books");
-      return;
-    }
 
-    console.log("✅ Found book:", foundBook);
-
-    dispatch(showBookData({ user: foundUser, book: foundBook }));
+    dispatch(showBookData(book));
     navigate("/bookPage");
   }
-  function handleRemove(bookId: number) {
-    const filterdBooks = loginUser.books.filter(
-      (book: BooksTypes) => book.id !== bookId
-    );
-
-    const userWithOutLoginUser = users.filter(
-      (userFromUsers: UserTypes) => userFromUsers.id !== loginUser.id
-    );
-    const userBooks = { ...loginUser, books: filterdBooks };
-
-    userWithOutLoginUser.push(userBooks);
-    dispatch(loginR(userBooks));
-
-    dispatch(addUserToUsers(userWithOutLoginUser));
-  }
+  
   return (
     <div
-      key={book.id}
+      key={book._id}
       className={`${
         location.hash == "#/myProfile" && "max-sm:h-40 gap-5"
       } bookCard  max-sm:w-full ${
@@ -92,16 +68,11 @@ export default function BookCard({
         </div>
         <div className="buttons flex justify-end">
           <button aria-label="button"
-            onClick={() => handleShow(user.id, book.id)}
+            onClick={() => handleShow()}
             className="show w-full"
           >
             Show
           </button>
-          {location.hash == "#/myProfile" && (
-            <button aria-label="button" onClick={() => handleRemove(book.id)}>
-              <IoIosRemoveCircle className="text-red-600 text-2xl" />
-            </button>
-          )}
         </div>
       </div>
     </div>

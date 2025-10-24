@@ -56,7 +56,6 @@ header {
       background-color: $mainColor;
       border-radius: $radius-full;
       padding: $spacing-sm;
-      transition: transform $transition-fast;
 
       &:hover {
         transform: scale(1.1);

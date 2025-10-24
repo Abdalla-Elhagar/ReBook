@@ -1,10 +1,9 @@
 import { CiLock, CiUser } from "react-icons/ci";
 import { useState } from "react";
-import { UserTypes } from "../pages/signUp/signUp";
 import { useDispatch, useSelector } from "react-redux";
 import { MdOutlineEmail } from "react-icons/md";
-import { addUserToUsers, loginR } from "../slices/logInAnSignUp";
 import { closeAndShowEditWindows } from "../slices/dataControl";
+import { UserTypes } from "../types/dataTypes";
 
 export default function EditUserData() {
   const dispatch = useDispatch();
@@ -14,13 +13,11 @@ export default function EditUserData() {
     (state: any) => state.userData.arrOfUsers
   );
   const [user, setUser] = useState<UserTypes>({
-    id: logInUser.id,
     name: logInUser.name,
     email: logInUser.email,
     password: logInUser.password,
     phone: logInUser.phone,
     confirmPassword: logInUser.password,
-    books: logInUser.books,
   });
   const [fUserError, setFUserError] = useState<number>();
   const [error, setError] = useState<boolean>(false);
@@ -46,13 +43,11 @@ export default function EditUserData() {
       setError(false);
 
       const userWithOutLoginUser = users.filter(
-        (userFromUsers: UserTypes) => userFromUsers.id !== user.id
+        (userFromUsers: UserTypes) => userFromUsers._id !== user._id
       );
       userWithOutLoginUser.push(user);
 
-      dispatch(addUserToUsers(userWithOutLoginUser));
 
-      dispatch(loginR(user));
 
       dispatch(closeAndShowEditWindows(false));
     } else {

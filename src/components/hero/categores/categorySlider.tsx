@@ -9,7 +9,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Swiper } from "swiper/react";
 import { SwiperSlide } from "swiper/react";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import { sendCategoryName } from "../../../slices/dataControl";
 import { useDispatch } from "react-redux";
 import { Autoplay, Pagination } from "swiper/modules";

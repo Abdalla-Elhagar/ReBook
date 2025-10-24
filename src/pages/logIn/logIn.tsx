@@ -1,47 +1,48 @@
 import Logo from "../../assets/projectLogo.webp";
 import { MdOutlineEmail } from "react-icons/md";
 import { CiLock } from "react-icons/ci";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import { MdErrorOutline } from "react-icons/md";
 import { useState } from "react";
-import { UserTypes } from "../signUp/signUp";
-import { useSelector, useDispatch } from "react-redux";
-import { loginR } from "../../slices/logInAnSignUp";
-import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
+import { login } from "../../slices/logInAndSignUp";
+import { InputField } from "../../components/common/InputField";
+const API = import.meta.env.VITE_API;
 
 export default function Login() {
   const navigate: any = useNavigate();
 
   const dispatch = useDispatch();
-  const users: UserTypes[] = useSelector(
-    (state: any) => state.userData.arrOfUsers
-  );
-  const [user, setUser] = useState<UserTypes>({
-    id: users.length + 1,
-    name: "",
+
+  const [user, setUser] = useState<{ email: string; password: string }>({
     email: "",
     password: "",
-    phone: "",
-    confirmPassword: "",
-    books: [],
   });
   const [error, setError] = useState<boolean>(false);
 
-  function handleLogin() {
-    const selectedUser: UserTypes | undefined = users.find(
-      (U: UserTypes) => U.email === user.email && U.password === user.password
-    );
 
-    if (selectedUser) {
-      dispatch(loginR(selectedUser));
-      setError(false);
-      navigate("/home");
-    } else {
+  async function handleLogin() {
+    const res = await fetch(`${API}/users/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    });
+
+    if (!res.ok) {
       setError(true);
-      console.log(users);
-      console.log(selectedUser);
+      return;
     }
+    setError(false);
+
+    const data = await res.json();
+
+    dispatch(login({ token: data, email: user.email }));
+
+    navigate("/");
   }
   return (
     <div className="login">
@@ -52,9 +53,9 @@ export default function Login() {
         animate={{ opacity: 1 }}
       >
         <div className="titleBox">
-          <div className="logo">
+          <Link to="/" className="logo">
             <img src={Logo} alt="Logo" />
-          </div>
+          </Link>
           <h1 className="projectName">ReBook</h1>
           <p className="pageName">Login to your Account</p>
         </div>
@@ -67,32 +68,30 @@ export default function Login() {
           </div>
         )}
         <form onSubmit={(e) => e.preventDefault()} className="contentBox">
-          <label htmlFor="email">Email</label>
-          <div className="input">
-            <MdOutlineEmail className="icon" />
-            <input
-              type="email"
-              id="email"
-              placeholder="Enter your Email"
-              value={user?.email}
-              onChange={(e: any) => setUser({ ...user, email: e.target.value })}
-            />
-          </div>
-          <label htmlFor="password">Password</label>
-          <div className="input">
-            <CiLock className="icon" />
-            <input
-              type="password"
-              id="password"
-              placeholder="Enter your password"
-              value={user?.password}
-              onChange={(e: any) =>
-                setUser({ ...user, password: e.target.value })
-              }
-            />
-          </div>
+          <InputField
+            title="Email"
+            icon={<MdOutlineEmail className="icon" />}
+            type="email"
+            placeholder="Enter your Email"
+            value={user.email}
+            onChange={(e: any) => setUser({ ...user, email: e.target.value })}
+          />
+
+          <InputField
+            title="Password"
+            icon={<CiLock className="icon" />}
+            type="password"
+            placeholder="Enter your password"
+            value={user.password}
+            onChange={(e: any) =>
+              setUser({ ...user, password: e.target.value })
+            }
+          />
+
           <div className="loginButton">
-            <button aria-label="button" onClick={handleLogin}>Login</button>
+            <button aria-label="button" onClick={handleLogin}>
+              Login
+            </button>
           </div>
         </form>
         <div className="footerBox">

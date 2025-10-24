@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { searchReducer } from "../slices/dataControl";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { IoIosSearch } from "react-icons/io";
 import { IoMdClose } from "react-icons/io";
 import { motion } from "motion/react";

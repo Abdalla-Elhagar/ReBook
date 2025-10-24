@@ -3,7 +3,7 @@ import "./index.css";
 import App from "./App.tsx";
 import { myStore } from "./store.ts";
 import { Provider } from "react-redux";
-import { HashRouter  } from "react-router";
+import { HashRouter  } from "react-router-dom";
 
 
 createRoot(document.getElementById("root")!).render(

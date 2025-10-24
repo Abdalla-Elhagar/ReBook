@@ -1,30 +1,38 @@
 import { useSelector } from "react-redux";
-import { BooksTypes, UserTypes } from "../signUp/signUp";
 import BookCard from "../../components/bookCard";
 import { HiEmojiSad } from "react-icons/hi";
+import { useEffect, useState } from "react";
+import { BooksTypes } from "../../types/dataTypes";
+import { booksData } from "../../api/booksData";
 
 export default function SearchPage() {
   const searchingText = useSelector((state: any) => state.dataControl.search);
-  const users: UserTypes[] = useSelector(
-    (state: any) => state.userData.arrOfUsers
-  );
 
-  const books: { book: BooksTypes; user: UserTypes }[] = [];
+  const [ books, setBooks ] = useState<BooksTypes[]>([])
 
-  users.forEach((user) => {
-    user.books.forEach((book) => {
+  useEffect(()=> {
+    const fetchBooksData = async() => {
+      const BookSRef = await booksData()
+
+      if(!BookSRef) return
+
+      setBooks(BookSRef)
+    }
+    fetchBooksData()
+  })
+
+  books?.forEach((book:BooksTypes) => {
       if (book.bookName.toLowerCase().includes(searchingText.toLowerCase())) {
-        books.push({ book, user });
+        
       }
     });
-  });
 
   return (
     <section className="searchPage">
       <div className="container flex justify-between max-sm:flex-col items-center flex-wrap gap-4">
         {books.length > 0 ? (
-          books.map(({ book, user }) => (
-            <BookCard key={book.id} book={book} user={user} />
+          books.map((book) => (
+            <BookCard key={book._id} book={book} />
           ))
         ) : (
           <p className="text-2xl max-sm:text-sm text-center mt-10">
