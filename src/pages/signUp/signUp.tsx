@@ -10,7 +10,6 @@ import { motion } from "motion/react";
 import { UserTypes } from "../../types/dataTypes";
 import { InputField } from "../../components/common/InputField";
 import { login } from "../../slices/logInAndSignUp";
-const API = import.meta.env.VITE_API;
 
 export default function SignUp() {
   const dispatch = useDispatch();
@@ -45,7 +44,7 @@ export default function SignUp() {
     }
     setError(false);
 
-    const res = await fetch(`${API}/users/register`, {
+    const res = await fetch(`https://rebook-backend-0.vercel.app/users/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
 import { login } from "../../slices/logInAndSignUp";
 import { InputField } from "../../components/common/InputField";
-const API = import.meta.env.VITE_API;
 
 export default function Login() {
   const navigate: any = useNavigate();
@@ -24,7 +23,7 @@ export default function Login() {
 
 
   async function handleLogin() {
-    const res = await fetch(`${API}/users/login`, {
+    const res = await fetch(`https://rebook-backend-0.vercel.app/users/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -8,7 +8,6 @@ import { InputField } from "../components/common/InputField";
 import { SelectField } from "../components/common/SelectField";
 import { BooksTypes, UserTypes } from "../types/dataTypes";
 import { useSelector } from "react-redux";
-const API = import.meta.env.VITE_API
 
 const bookstatus = ["New", "As New", "Very Good", "Good"];
 
@@ -58,7 +57,7 @@ export const AddBook = () => {
       formData.append("image", book.imageFile);
     }
 
-    const response = await fetch(`${API}/user-books/addBook`, {
+    const response = await fetch(`https://rebook-backend-0.vercel.app/user-books/addBook`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${JSON.parse(localStorage.getItem("token") || "")}`,

@@ -1,7 +1,6 @@
-const API = import.meta.env.VITE_API
 
 export const usersData = async ()=> {
-    const res = await fetch(`${API}/users`)
+    const res = await fetch(`https://rebook-backend-0.vercel.app/users`)
 
     if(! res.ok) {
         console.log("Get users has been error")

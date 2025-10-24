@@ -1,10 +1,9 @@
 import { IoCloseCircleSharp } from "react-icons/io5";
-const API = import.meta.env.VITE_API;
 
 export default function RemoveBook({ bookId }: { bookId?: string }) {
   const handleDelete = async () => {
     try {
-      const res = await fetch(`${API}/user-books/delete-book`, {
+      const res = await fetch(`https://rebook-backend-0.vercel.app/user-books/delete-book`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
