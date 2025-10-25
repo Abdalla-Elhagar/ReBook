@@ -3,7 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   bookData: {},
   showEdit: false,
-  showAddBooks: false,
   search: "",
   users: JSON.parse(localStorage.getItem("garduationProjectUsers") || "[]"),
   categoryName: "",
@@ -18,9 +17,6 @@ const dataControl = createSlice({
     },
     closeAndShowEditWindows: (state, action) => {
       state.showEdit = action.payload;
-    },
-    closeAndShowAddBooksWindows: (state, action) => {
-      state.showAddBooks = action.payload;
     },
     searchReducer: (state, action) => {
       state.search = action.payload;
@@ -47,7 +43,6 @@ export default dataControl.reducer;
 export const {
   showBookData,
   closeAndShowEditWindows,
-  closeAndShowAddBooksWindows,
   searchReducer,
   addBook,
   sendCategoryName,

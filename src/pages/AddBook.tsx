@@ -16,6 +16,7 @@ export const AddBook = () => {
     (state: any) => state.userData.logedInUser
   );
   const [error, setError] = useState<boolean>(false);
+  const [loading , setLoading] = useState<boolean>(false);
   const [book, setBook] = useState<BooksTypes>({
     bookName: "",
     author: "",
@@ -44,41 +45,51 @@ export const AddBook = () => {
       return;
     }
 
-    const formData = new FormData();
+    setLoading(true)
 
-    formData.append("bookName", book.bookName);
-    formData.append("author", book.author);
-    formData.append("description", book.description);
-    formData.append("category", book.category);
-    formData.append("status", book.status);
-    formData.append("owner", book.owner);
+    try {
+      const formData = new FormData();
 
-    if (book.imageFile) {
-      formData.append("image", book.imageFile);
+      formData.append("bookName", book.bookName);
+      formData.append("author", book.author);
+      formData.append("description", book.description);
+      formData.append("category", book.category);
+      formData.append("status", book.status);
+      formData.append("owner", book.owner);
+
+      if (book.imageFile) {
+        formData.append("image", book.imageFile);
+      }
+
+      const res = await fetch(`https://rebook-backend-0.vercel.app/user-books/addBook`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${JSON.parse(localStorage.getItem("token") || "")}`,
+        },
+        body: formData,
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) throw new Error(data.message || "Error adding book");
+
+      // handle success (optional): e.g. reset form or navigate
+    } catch (err) {
+      setError(true);
+      console.error(err);
+    } finally {
+      setLoading(false);
+      location.hash= "#/"
     }
-
-    const response = await fetch(`https://rebook-backend-0.vercel.app/user-books/addBook`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${JSON.parse(localStorage.getItem("token") || "")}`,
-      },
-      body: formData,
-    });
-
-     const data = await response.json();
-
-      if (!response.ok) throw new Error(data.message || "Error adding book");
-
-
   }
 
   return (
     <div className="container mx-auto px-40">
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="contentBox mt-20 mx-auto px-40 "
+        className="contentBox mt-5 mx-auto px-40 "
       >
-        <div className="flex flex-col lg:flex-row justify-between gap-10">
+        <div className="flex flex-col lg:flex-row justify-between gap-5">
           <InputField
             title="Book Name"
             icon={<FaBook className="icon" />}
@@ -162,11 +173,12 @@ export const AddBook = () => {
         <div className="editButton">
           <button
             aria-label="button"
+            disabled={loading}
             onClick={() => {
               handleAdd();
             }}
           >
-            Add
+            {loading ? <span>Uploading...</span> : <span>Add</span>}
           </button>
         </div>
       </form>

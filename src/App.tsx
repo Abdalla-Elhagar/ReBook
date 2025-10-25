@@ -35,8 +35,7 @@ function App() {
 
   return (
     <div className="app overflow-hidden">
-      {location.hash !== "#/signUp" && location.hash !== "#/login" && <Header />}
-      
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/addBook" element={<AddBook />} />

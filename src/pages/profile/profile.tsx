@@ -8,10 +8,12 @@ import { closeAndShowEditWindows } from "../../slices/dataControl";
 import { BooksTypes, UserTypes } from "../../types/dataTypes";
 import { useEffect, useState } from "react";
 import { booksData } from "../../api/booksData";
+import EditUserDataWindow from "../../components/EditUserDataWindow";
 
 export default function MyProfile() {
 
   const [ books, setBooks] = useState([])
+    const showEdit = useSelector((state:any) => state.dataControl.showEdit)
   
     useEffect(()=> {
       const fetchBooksData = async ()=> {
@@ -30,6 +32,7 @@ export default function MyProfile() {
   return (
     <AnimatePresence>
       <div className="myProfile flex relative">
+        { showEdit && <EditUserDataWindow /> }
         <div className="container flex justify-center max-sm:p-[5px!important]">
           <motion.div
             transition={{ duration: 0.5 }}
@@ -65,7 +68,7 @@ export default function MyProfile() {
                 
               </div>
               <div className="books flex justify-center items-center flex-col gap-5 py-5">
-                {userBooks.map((book: BooksTypes) => (
+                {userBooks.reverse().map((book: BooksTypes) => (
                   <BookCard key={book._id} book={book} />
                 ))}
                 {userBooks.length === 0 && (

@@ -36,7 +36,7 @@ header {
   background-color: $pageColor;
   padding: 0;
   z-index: 20;
-  position: fixed;
+  position: relative;
   width: 100%;
 
   .container {

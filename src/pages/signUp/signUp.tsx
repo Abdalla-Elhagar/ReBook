@@ -10,6 +10,8 @@ import { motion } from "motion/react";
 import { UserTypes } from "../../types/dataTypes";
 import { InputField } from "../../components/common/InputField";
 import { login } from "../../slices/logInAndSignUp";
+import { MdOutlineLocalPhone } from "react-icons/md";
+
 
 export default function SignUp() {
   const dispatch = useDispatch();
@@ -99,7 +101,7 @@ export default function SignUp() {
 
           <InputField
             title="Phone"
-            icon={<CiUser className="icon" />}
+            icon={<MdOutlineLocalPhone className="icon" />}
             type="text"
             placeholder="Enter your phone"
             value={user.phone}
