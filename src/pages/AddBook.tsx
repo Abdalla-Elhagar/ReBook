@@ -152,7 +152,8 @@ export const AddBook = () => {
           <FaLink className="icon" />
           <input
             type="file"
-            accept="umage/*"
+            accept="image/*"
+            capture="environment"
             required
             onChange={handleImageChange}
           />
