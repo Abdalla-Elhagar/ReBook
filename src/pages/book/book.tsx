@@ -24,9 +24,9 @@ export default function BookPage() {
     
     if (!bookUser) return null
   return (
-    <div className="bookPage py-10 min-h-screen flex">
+    <div className="bookPage py-0 md:pt-[100px] md:py-10 min-h-screen flex">
       {localStorage.getItem("token") ? (
-        <div className="container max-md:flex-col md:justify-center md:w-1/2 w-full  md:items-center">
+        <div className="container max-lg:flex-col lg:justify-center md:w-1/2 w-full text-center lg:text-start items-center rounded-none md:rounded-xl">
           <img
             src={
               bookData.imageUrl
@@ -34,7 +34,7 @@ export default function BookPage() {
                 : ""
             }
             alt="book image"
-            className="bookImg md:w-1/2 w-full"
+            className="bookImg lg:w-1/2 w-full"
           />
           <div className="right max-md:max-w-[100%!important]">
             <div className="bookData">

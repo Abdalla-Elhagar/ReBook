@@ -80,7 +80,7 @@ export default function EditNameAndPhone() {
               error &&
               data.phone.length < 11 && (
                 <p className="text-red-600 -mt-3">
-                  Phone number must be more than 10 letters
+                  Phone number must be more than 10 numbers
                 </p>
               )
             }

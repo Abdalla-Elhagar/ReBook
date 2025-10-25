@@ -70,7 +70,7 @@ export default function BookCard({book}: {book: BooksTypes}) {
         <div className="buttons flex justify-end">
           <button aria-label="button"
             onClick={() => handleShow()}
-            className={`show  ${ location.hash !== "#/myProfile" && "w-[100%!important]" }`}
+            className={`show  ${ location.hash !== "#/myProfile" && "w-[100%!important]" } transition-all duration-100 focus:scale-90`}
           >
             Show
           </button>

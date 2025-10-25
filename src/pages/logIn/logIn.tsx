@@ -90,7 +90,7 @@ export default function Login() {
           />
 
           <div className="loginButton">
-            <button aria-label="button" onClick={handleLogin}>
+            <button aria-label="button" onClick={handleLogin} className="transition-all duration-100 focus:scale-90">
               Login
             </button>
           </div>

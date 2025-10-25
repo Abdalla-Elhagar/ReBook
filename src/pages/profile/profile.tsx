@@ -44,7 +44,7 @@ export default function MyProfile() {
               onClick={() => {
                 dispatch(closeAndShowEditWindows(true));
               }}
-              className="edit absolute right-5 top-5"
+              className="edit absolute right-5 top-5 transition-all duration-100 focus:scale-90"
             >
               <FiEdit className="editIcon text-2xl" />
             </button>

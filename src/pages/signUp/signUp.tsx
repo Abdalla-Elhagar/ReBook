@@ -172,7 +172,7 @@ export default function SignUp() {
           />
 
           <div className="signUpButton">
-            <button aria-label="button" onClick={handleSignUp}>
+            <button aria-label="button" onClick={handleSignUp} className="transition-all duration-100 focus:scale-90">
               Sign Up
             </button>
           </div>
