@@ -153,7 +153,6 @@ export const AddBook = () => {
           <input
             type="file"
             accept="image/*"
-            capture="environment"
             required
             onChange={handleImageChange}
           />
