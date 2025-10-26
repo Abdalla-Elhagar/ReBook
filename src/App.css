@@ -1,1 +1,26 @@
 @import "tailwindcss";
+
+@tailwind utilities;
+
+@layer utilities {
+  .modal-scrollbar::-webkit-scrollbar {
+    scrollbar-width: none;
+  }
+
+  .modal-scrollbar::-webkit-scrollbar-track {
+    scrollbar-width: none;
+  }
+
+  .modal-scrollbar::-webkit-scrollbar-thumb {
+    scrollbar-width: none;
+  }
+
+  .modal-scrollbar::-webkit-scrollbar-thumb:hover {
+    scrollbar-width: none;
+  }
+
+  /* Firefox */
+  .modal-scrollbar {
+    scrollbar-width: none;
+  }
+}
