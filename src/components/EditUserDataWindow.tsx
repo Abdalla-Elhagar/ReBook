@@ -43,7 +43,7 @@ export default function EditUserDataWindow() {
         className="bg-stone-200 w-[800px] min-h-[400px] max-h-[600px] max-w-[calc(100%-60px)] rounded-2xl p-4 relative overflow-y-auto modal-scrollbar touch-pan-y overscroll-contain"
       >
         <IoCloseCircleSharp
-          className="text-2xl sticky top-0 float-right right-1 text-red-600 cursor-pointer"
+          className="text-2xl sticky -top-2 float-right right-2 text-red-600 cursor-pointer"
           onClick={handleClose}
         />
 

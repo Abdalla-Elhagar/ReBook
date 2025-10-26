@@ -156,7 +156,6 @@
   .myProfile {
     min-height: 100vh;
     @include gradient-background;
-    padding-top: 100px;
 
     .window {
       @include box-base;

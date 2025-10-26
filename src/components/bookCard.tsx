@@ -44,8 +44,8 @@ export default function BookCard({ book }: { book: BooksTypes }) {
     >
       <LazyLoadImage
         className={`${
-          location.hash == "#/myProfile" &&
-          "max-sm:h-full max-sm:w-[100px!important]"
+          location.hash == "#/myProfile" ?
+          "h-full" : ""
         } `}
         src={book.imageUrl}
         alt="book image"
