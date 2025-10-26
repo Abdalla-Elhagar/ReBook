@@ -9,8 +9,11 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
 import { login } from "../../slices/logInAndSignUp";
 import { InputField } from "../../components/common/InputField";
+import { ClipLoader } from "react-spinners";
 
 export default function Login() {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const navigate: any = useNavigate();
 
   const dispatch = useDispatch();
@@ -21,34 +24,42 @@ export default function Login() {
   });
   const [error, setError] = useState<boolean>(false);
 
-
   async function handleLogin() {
-    const res = await fetch(`https://rebook-backend-0.vercel.app/users/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    });
+    try {
+      setIsLoading(true);
+      const res = await fetch(
+        `https://rebook-backend-0.vercel.app/users/login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
+        }
+      );
 
-    if (!res.ok) {
-      setError(true);
-      return;
+      if (!res.ok) {
+        setError(true);
+        return;
+      }
+      setError(false);
+
+      const data = await res.json();
+
+      dispatch(login({ token: data, email: user.email }));
+
+      navigate("/");
+      location.reload();
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsLoading(false);
     }
-    setError(false);
-
-    const data = await res.json();
-
-    dispatch(login({ token: data, email: user.email }));
-
-    navigate("/");
-        location.reload()
-
   }
   return (
-    <div className="login">
+    <div className="login flex justify-center items-center md:items-center min-h-[100vh] md:py-[50px] ">
       <motion.div
-        className="loginBox"
+        className="loginBox w-full md:w-[600px] min-h-screen relative  md:min-h-fit"
         transition={{ duration: 1 }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -90,12 +101,29 @@ export default function Login() {
           />
 
           <div className="loginButton">
-            <button aria-label="button" onClick={handleLogin} className="transition-all duration-100 focus:scale-90">
-              Login
+            <button
+              aria-label="button"
+              disabled={isLoading}
+              onClick={handleLogin}
+              className="transition-all duration-100 focus:scale-90"
+            >
+              {isLoading ? (
+                <>
+                  <span>Loading </span>
+                  <ClipLoader
+                    color="#ffffff"
+                    size={10}
+                    loading
+                    speedMultiplier={2}
+                  />
+                </>
+              ) : (
+                <span>Login</span>
+              )}
             </button>
           </div>
         </form>
-        <div className="footerBox">
+        <div className="footerBox flex flex-col md:flex-row justify-center items-center">
           <p>Do you have an account?</p>
           <Link className="toSignUp" to="/signUp">
             Create an account

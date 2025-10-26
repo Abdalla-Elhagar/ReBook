@@ -18,18 +18,13 @@
 
   .login,
   .signUp {
-    @include center;
     width: 100%;
-    min-height: 100vh;
     @include gradient-background;
-    padding: $spacing-md 0;
 
     .loginBox,
     .signUpBox {
       @include box-base;
       color: $textColor;
-      width: $auth-box-width;
-      min-height: fit-content;
 
       .signUpBox {
         min-height: 600px;

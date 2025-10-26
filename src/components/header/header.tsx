@@ -38,9 +38,12 @@ export default function Header() {
                 <CiUser className="size-8" />
               </button>
             ) : (
-              <div>
-                <Link className="text-xl text-[#135E76]" to="login">
+              <div className="flex gap-2">
+                <Link className="text-xl bg-[#0963a7!important] px-3 py-1 rounded-lg text-white" to="login">
                   login
+                </Link>
+                <Link className="text-xl bg-[#0963a7!important] px-3 py-1 rounded-lg text-white" to="signUp">
+                  Register
                 </Link>
               </div>
             )}

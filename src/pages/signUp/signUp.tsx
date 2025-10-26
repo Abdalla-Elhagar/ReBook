@@ -11,9 +11,11 @@ import { UserTypes } from "../../types/dataTypes";
 import { InputField } from "../../components/common/InputField";
 import { login } from "../../slices/logInAndSignUp";
 import { MdOutlineLocalPhone } from "react-icons/md";
-
+import { ClipLoader } from "react-spinners";
 
 export default function SignUp() {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const dispatch = useDispatch();
 
   const [usedEmail, setUsedEmail] = useState<boolean>(false);
@@ -44,37 +46,47 @@ export default function SignUp() {
       setError(true);
       return;
     }
-    setError(false);
+    try {
+      setIsLoading(true);
+      setError(false);
 
-    const res = await fetch(`https://rebook-backend-0.vercel.app/users/register`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    });
+      const res = await fetch(
+        `https://rebook-backend-0.vercel.app/users/register`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
+        }
+      );
 
-    if (!res.ok) {
-      setUsedEmail(true);
-      return;
+      if (!res.ok) {
+        setUsedEmail(true);
+        return;
+      }
+      setUsedEmail(false);
+      const data = await res.json();
+
+      dispatch(login({ token: data, email: user.email }));
+
+      navigate("/");
+
+      location.reload();
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsLoading(false);
     }
-    setUsedEmail(false);
-    const data = await res.json();
-
-    dispatch(login({ token: data, email: user.email }));
-
-    navigate("/");
-
-    location.reload()
   }
 
   return (
-    <div className="signUp ">
+    <div className="signUp flex justify-center items-start md:items-center md:min-h-[100vh] md:py-[100px]">
       <motion.div
         transition={{ duration: 1 }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="signUpBox max-sm:w-full relative"
+        className="signUpBox w-full lg:w-[900px] relative"
       >
         <div className="titleBox">
           <Link to="/" className="logo">
@@ -84,7 +96,9 @@ export default function SignUp() {
           <p className="pageName">Create a new account</p>
         </div>
         <form onSubmit={(e) => e.preventDefault()} className="contentBox">
-          <InputField
+
+          <div className="flex flex-col md:flex-row justify-center items-center gap-x-4">
+<InputField
             title="Name"
             icon={<CiUser className="icon" />}
             type="text"
@@ -133,6 +147,9 @@ export default function SignUp() {
             }
           />
 
+          </div>
+          
+
           <InputField
             title="Password"
             icon={<CiLock className="icon" />}
@@ -172,8 +189,20 @@ export default function SignUp() {
           />
 
           <div className="signUpButton">
-            <button aria-label="button" onClick={handleSignUp} className="transition-all duration-100 focus:scale-90">
-              Sign Up
+            <button
+              disabled={isLoading}
+              aria-label="button"
+              onClick={handleSignUp}
+              className="transition-all duration-100 focus:scale-90"
+            >
+              {isLoading ? (
+                <>
+                  <span>Loading </span>
+                  <ClipLoader color="#ffffff" size={10} loading speedMultiplier={2} />
+                </>
+              ) : (
+                <span>Register</span>
+              )}
             </button>
           </div>
         </form>
