@@ -72,14 +72,14 @@ export const AddBook = () => {
       const data = await res.json();
 
       if (!res.ok) throw new Error(data.message || "Error adding book");
-
+      location.hash= "#/"
       // handle success (optional): e.g. reset form or navigate
     } catch (err) {
       setError(true);
       console.error(err);
     } finally {
       setLoading(false);
-      location.hash= "#/"
+      
     }
   }
 

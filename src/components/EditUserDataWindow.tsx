@@ -27,8 +27,8 @@ useEffect(() => {
         dispatch(closeAndShowEditWindows(false))
     }
   return (
-    <section onClick={handleClose} className="fixed top-0 left-0 w-full h-lvh bg-black/50 flex justify-center items-center z-50">
-        <div onClick={(e) => e.stopPropagation()} className="bg-stone-200 w-[800px] min-h-[400px] max-w-[calc(100%-60px)] rounded-2xl p-4 relative">
+    <section onClick={handleClose} className="fixed top-0 left-0 w-full h-dvh bg-black/50 flex justify-center items-center z-50">
+        <div onClick={(e) => e.stopPropagation()} className="bg-stone-200 w-[800px] min-h-[400px] max-w-[calc(100%-60px)] rounded-2xl p-4 relative overflow-y-auto">
         <IoCloseCircleSharp className="text-2xl absolute top-1 right-1 text-red-600 cursor-pointer" onClick={handleClose} />
 
         <h2 className="text-2xl font-bold">Edit Your Profile</h2>
