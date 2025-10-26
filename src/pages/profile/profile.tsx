@@ -41,7 +41,7 @@ export default function MyProfile() {
             transition={{ duration: 0.5 }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="profileData flex flex-col items-center max-sm:w-full"
+            className="profileData flex flex-col items-center max-sm:w-full relative"
           >
             <button
               aria-label="Edit profile button"
