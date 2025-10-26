@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import { usersData } from "./api/usersData";
 import { handleLogedInUser } from "./slices/logInAndSignUp";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { controlInUserMenuInHeader } from "./slices/dataControl";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -47,7 +48,7 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-    <main className="app overflow-hidden">
+    <main onClick={() => dispatch(controlInUserMenuInHeader(false))} className="app overflow-hidden">
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />

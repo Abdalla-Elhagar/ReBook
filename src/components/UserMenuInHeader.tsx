@@ -23,6 +23,7 @@ const UserMenuInHeader = () => {
 
   return (
     <motion.div
+      onClick={(e) => e.stopPropagation()}
       transition={{ duration: 0.3 }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}

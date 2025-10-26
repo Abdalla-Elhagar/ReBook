@@ -10,7 +10,8 @@ export default function Header() {
   const dispatch = useDispatch()
   const show = useSelector((state:any) => state.dataControl.show)
     
-  function handleShow() {
+  function handleShow(e:any) {
+     e.stopPropagation()
     dispatch(controlInUserMenuInHeader(!show))
   }
 
