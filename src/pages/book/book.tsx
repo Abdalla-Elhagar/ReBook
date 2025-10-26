@@ -1,32 +1,21 @@
-import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { usersData } from "../../api/usersData";
-import { UserTypes } from "../../types/dataTypes";
+import { BooksTypes } from "../../types/dataTypes";
 
 export default function BookPage() {
-  const bookData = useSelector(
+  const bookData:BooksTypes = useSelector(
     (state: any) => state.dataControl.bookData
   );
 
-  const [users, setUsers] = useState<UserTypes[]>([])
-    useEffect(()=> {
-      const fetchUsersData= async ()=>{
-        const usersRef = await usersData()
-  
-        if (usersRef) setUsers(usersRef)
-      }
-    fetchUsersData()
-    },[])
-  
+ const bookUser = bookData.ownerData;
 
-    const bookUser = users.find((user: UserTypes)=> user._id === bookData.owner)
     
-    if (!bookUser) return null
+    
+    if (!bookUser) return <div>Loading...</div>
   return (
-    <div className="bookPage py-0 md:pt-[100px] md:py-10 min-h-screen flex">
+    <div className="bookPage py-0 lg:pt-[100px] lg:py-10 min-h-screen flex">
       {localStorage.getItem("token") ? (
-        <div className="container max-lg:flex-col lg:justify-center md:w-1/2 w-full text-center lg:text-start items-center rounded-none md:rounded-xl">
+        <div className="container max-lg:flex-col lg:justify-center lg:min-w-[800px] lg:w-1/2 md:w-3/5 w-11/12 text-center lg:text-start items-center rounded-none md:rounded-xl">
           <img
             src={
               bookData.imageUrl

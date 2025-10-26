@@ -1,45 +1,38 @@
 import { useDispatch } from "react-redux";
 import { showBookData } from "../slices/dataControl";
 import { useNavigate } from "react-router-dom";
-import { usersData } from "../api/usersData";
 // @ts-ignore
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import { useEffect, useState } from "react";
 import { BooksTypes, UserTypes } from "../types/dataTypes";
 import RemoveBook from "./RemoveBook";
-
-export default function BookCard({book}: {book: BooksTypes}) {
-
-  const [users, setUsers] = useState([])
-  useEffect(()=> {
-    const fetchUsersData= async ()=>{
-      const usersRef = await usersData()
-
-      if (usersRef) setUsers(usersRef)
-    }
-  fetchUsersData()
-  },[])
+import { usersData } from "../api/usersData";
+import { useQuery } from '@tanstack/react-query';
 
 
+export default function BookCard({ book }: { book: BooksTypes }) {
+  
+
+  const { data: users = [], isLoading } = useQuery({
+    queryKey: ['users'],
+    queryFn: usersData,
+  });
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  
   function handleShow() {
-    const foundUser = users.find((u:UserTypes) => u._id === book.owner);
+    if (isLoading) return;
+    const foundUser = users.find((u: UserTypes) => u._id === book.owner);
     if (!foundUser) {
       console.log("User not found");
       return;
     }
 
-    
-
-
-    dispatch(showBookData(book));
+    dispatch(showBookData({ ...book, ownerData: foundUser }));
     navigate("/bookPage");
   }
-  
+
   return (
     <div
       key={book._id}
@@ -60,7 +53,8 @@ export default function BookCard({book}: {book: BooksTypes}) {
       />
       <div
         className={`${
-          location.hash == "#/myProfile" && "flex justify-between items-center w-full "
+          location.hash == "#/myProfile" &&
+          "flex justify-between items-center w-full "
         }`}
       >
         <div className="text">
@@ -68,17 +62,18 @@ export default function BookCard({book}: {book: BooksTypes}) {
           <div className="authorName">{book.author}</div>
         </div>
         <div className="buttons flex justify-end">
-          <button aria-label="button"
+          <button
+            aria-label="button"
             onClick={() => handleShow()}
-            className={`show  ${ location.hash !== "#/myProfile" && "w-[100%!important]" } transition-all duration-100 focus:scale-90`}
+            disabled={isLoading}
+            className={`show  ${
+              location.hash !== "#/myProfile" && "w-[100%!important]"
+            } transition-all duration-100 focus:scale-90`}
           >
-            Show
+            {isLoading ? <span>Loading...</span> : <span>Show</span>}
           </button>
 
-        {
-          location.hash === "#/myProfile" && <RemoveBook bookId={book._id} />
-        }
-          
+          {location.hash === "#/myProfile" && <RemoveBook bookId={book._id} />}
         </div>
       </div>
     </div>

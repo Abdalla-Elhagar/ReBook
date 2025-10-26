@@ -17,4 +17,5 @@ export interface BooksTypes {
   status: string,
   owner: string,
   addingDate: number,
+  ownerData?:UserTypes;
 }

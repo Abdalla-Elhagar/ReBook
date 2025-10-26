@@ -14,6 +14,18 @@ import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { usersData } from "./api/usersData";
 import { handleLogedInUser } from "./slices/logInAndSignUp";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 60 * 1000, 
+      gcTime: 10 * 60 * 1000,
+      retry: 1,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 function App() {
   const dispatch = useDispatch()
@@ -34,7 +46,8 @@ function App() {
     },[dispatch])
 
   return (
-    <div className="app overflow-hidden">
+    <QueryClientProvider client={queryClient}>
+    <main className="app overflow-hidden">
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -46,7 +59,8 @@ function App() {
         <Route path="/searchPage" element={<SearchPage />} />
         <Route path="/categoryPage" element={<CategoryPage />} />
       </Routes>
-    </div>
+    </main>
+    </QueryClientProvider>
   );
 }
 
