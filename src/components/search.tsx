@@ -35,7 +35,7 @@ export default function Search() {
           onChange={(e) => setSearch(e.target.value)}
         />
         <button aria-label="button"
-          className="absolute right-2 top-1/2 -translate-y-1/2 transition-all duration-100 focus:scale-90"
+          className="absolute right-0 top-1/2 -translate-y-1/2 transition-all duration-100 focus:scale-90 flex justify-center items-center size-12"
           onClick={handleSearch}
         >
           <IoIosSearch className="searchIcon text-xl" />
@@ -43,6 +43,7 @@ export default function Search() {
       </form>
 
       <button
+        aria-label="button"
         className="hidden max-md:flex transition-all duration-100 focus:scale-90"
         onClick={() => setShow(true)}
       >
