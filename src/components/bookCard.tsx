@@ -58,7 +58,7 @@ export default function BookCard({ book }: { book: BooksTypes }) {
           <div className="bookName mb-2">{book.bookName}</div>
           <div className="authorName">{book.author}</div>
         </div>
-        <div className="buttons flex justify-end">
+        <div onClick={(e) => e.stopPropagation()} className="buttons flex justify-end ">
           {location.hash === "#/myProfile" && <RemoveBook bookId={book._id} />}
         </div>
       </div>

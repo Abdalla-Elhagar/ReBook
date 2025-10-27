@@ -31,7 +31,7 @@ export default function Header() {
             {localStorage.getItem("token") ? (
               <button
                 onClick={handleShow}
-                className="userButton"
+                className="userButton duration-300"
               >
                 <CiUser className="size-6" />
               </button>

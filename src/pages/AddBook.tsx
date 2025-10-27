@@ -181,7 +181,7 @@ export const AddBook = () => {
               handleAdd();
             }}
           >
-            {loading ? <span>Uploading...</span> : <span>Add</span>}
+            {loading ? <span>Adding...</span> : <span>Add</span>}
           </button>
         </div>
       </form>
