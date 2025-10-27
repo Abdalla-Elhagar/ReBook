@@ -18,7 +18,7 @@ export default function CategoryList() {
 
   return (
     <>
-    <h2 className="text-xl font-bold">categores</h2>
+    <h2 className="text-xl font-bold hidden md:block">categores</h2>
       <ul className="w-full max-md:hidden ml-3 mt-5 flex flex-col gap-5">
         
         {categores.map((category: string, index: number) => (

@@ -16,14 +16,12 @@ export default function Header() {
   }
 
   return (
-      <header className="header w-full drop-shadow-lg shadow-md"
+      <header className="header w-full drop-shadow-lg shadow-md h-[70px!important]"
       >
-        <div className="container">
-          <div>
-            <Link to="/">
-              <img src={Logo} alt="logo" className="logo" />
+        <div className="container h-full">
+            <Link className="min-w-14 max-h-16" to="/">
+              <img src={Logo} alt="logo" className="min-w-14 max-h-16" />
             </Link>
-          </div>
 
           <div className="flex justify-end gap-5 items-center w-[280px]">
             <div>
@@ -35,14 +33,14 @@ export default function Header() {
                 onClick={handleShow}
                 className="userButton"
               >
-                <CiUser className="size-8" />
+                <CiUser className="size-6" />
               </button>
             ) : (
               <div className="flex gap-2">
-                <Link className="text-xl bg-[#0963a7!important] px-3 py-1 rounded-lg text-white" to="login">
+                <Link className=" bg-[#0963a7!important] px-3 py-1.5 rounded-lg text-white" to="login">
                   login
                 </Link>
-                <Link className="text-xl bg-[#0963a7!important] px-3 py-1 rounded-lg text-white" to="signUp">
+                <Link className=" bg-[#0963a7!important] px-3 py-1.5 rounded-lg text-white" to="signUp">
                   Register
                 </Link>
               </div>
