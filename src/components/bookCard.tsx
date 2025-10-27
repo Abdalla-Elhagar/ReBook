@@ -39,11 +39,11 @@ export default function BookCard({ book }: { book: BooksTypes }) {
       className={`relative ${
         location.hash == "#/myProfile" && "h-20 gap-5"
       } bookCard  max-sm:w-full ${
-        location.hash !== "#/myProfile" && "min-h-[600px!important]"
-      } transition-all duration-100 focus:scale-90`}
+        location.hash !== "#/myProfile" && "min-h-[500px!important]"
+      } transition-all duration-100 focus:scale-90 overflow-hidden`}
     >
       <LazyLoadImage
-        className={`${location.hash == "#/myProfile" ? "h-full" : ""} `}
+        className={`${location.hash == "#/myProfile" ? "h-full" : "h-110"} `}
         src={book.imageUrl}
         alt="book image"
         effect="blur"

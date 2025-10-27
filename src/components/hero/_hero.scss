@@ -20,12 +20,10 @@
       width: $book-card-width;
       box-shadow: 0 0 10px rgb(209, 209, 209);
       position: relative;
-      height: fit-content;
       @include card-hover;
 
       img {
         width: $book-card-width;
-        height: $book-card-height;
         display: block;
       }
 
