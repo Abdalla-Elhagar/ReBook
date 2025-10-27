@@ -3,6 +3,7 @@ import BookCard from "../components/bookCard";
 import { useEffect, useState } from "react";
 import { booksData } from "../api/booksData";
 import { BooksTypes } from "../types/dataTypes";
+import GoBack from "../components/common/GoBack";
 
 export default function CategoryPage() {
   const [books, setBooks] = useState<BooksTypes[]>([]);
@@ -23,6 +24,7 @@ export default function CategoryPage() {
 
   return (
     <section className="postes">
+      <GoBack />
       <p className="px-[80px] mb-4 max-sm:px-[10px!important] font-semibold md:text-4xl text-2xl">
         {categoryName} Books
       </p>

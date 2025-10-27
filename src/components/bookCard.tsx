@@ -7,20 +7,17 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 import { BooksTypes, UserTypes } from "../types/dataTypes";
 import RemoveBook from "./RemoveBook";
 import { usersData } from "../api/usersData";
-import { useQuery } from '@tanstack/react-query';
-
+import { useQuery } from "@tanstack/react-query";
 
 export default function BookCard({ book }: { book: BooksTypes }) {
-  
-
   const { data: users = [], isLoading } = useQuery({
-    queryKey: ['users'],
+    queryKey: ["users"],
     queryFn: usersData,
   });
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
+
   function handleShow() {
     if (isLoading) return;
     const foundUser = users.find((u: UserTypes) => u._id === book.owner);
@@ -34,19 +31,19 @@ export default function BookCard({ book }: { book: BooksTypes }) {
   }
 
   return (
-    <div
+    <button
+      aria-label="show book data"
+      onClick={() => handleShow()}
+      disabled={isLoading}
       key={book._id}
       className={`relative ${
         location.hash == "#/myProfile" && "h-20 gap-5"
       } bookCard  max-sm:w-full ${
         location.hash !== "#/myProfile" && "min-h-[600px!important]"
-      } `}
+      } transition-all duration-100 focus:scale-90`}
     >
       <LazyLoadImage
-        className={`${
-          location.hash == "#/myProfile" ?
-          "h-full" : ""
-        } `}
+        className={`${location.hash == "#/myProfile" ? "h-full" : ""} `}
         src={book.imageUrl}
         alt="book image"
         effect="blur"
@@ -62,20 +59,9 @@ export default function BookCard({ book }: { book: BooksTypes }) {
           <div className="authorName">{book.author}</div>
         </div>
         <div className="buttons flex justify-end">
-          <button
-            aria-label="button"
-            onClick={() => handleShow()}
-            disabled={isLoading}
-            className={`show  ${
-              location.hash !== "#/myProfile" && "w-[100%!important]"
-            } transition-all duration-100 focus:scale-90`}
-          >
-            {isLoading ? <span>Loading...</span> : <span>Show</span>}
-          </button>
-
           {location.hash === "#/myProfile" && <RemoveBook bookId={book._id} />}
         </div>
       </div>
-    </div>
+    </button>
   );
 }

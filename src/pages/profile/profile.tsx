@@ -10,6 +10,7 @@ import { booksData } from "../../api/booksData";
 import EditUserDataWindow from "../../components/EditUserDataWindow";
 import { ClipLoader } from "react-spinners";
 import { useQuery } from "@tanstack/react-query";
+import GoBack from "../../components/common/GoBack";
 
 export default function MyProfile() {
   const { data: books = [], isLoading } = useQuery({
@@ -33,9 +34,10 @@ export default function MyProfile() {
 
   return (
     <AnimatePresence>
+      <GoBack />
       <div className="myProfile flex relative pb-[100px]">
         {showEdit && <EditUserDataWindow />}
-        
+
         <div className="container flex justify-center max-sm:p-[5px!important]">
           <motion.div
             transition={{ duration: 0.5 }}
@@ -54,7 +56,7 @@ export default function MyProfile() {
             <div className="image">
               <img src={userImage} alt="User profile picture" />
             </div>
-            
+
             <h1 className="name max-sm:[font-size:35px!important]">
               {logInUser.name}
             </h1>
@@ -69,12 +71,14 @@ export default function MyProfile() {
               <div className="titleAndAddBook flex justify-between items-center px-5">
                 <h2 className="text-3xl font-bold">User Books</h2>
               </div>
-              
+
               <div className="books flex justify-center items-center flex-col gap-5 py-5">
                 {userBooks.length > 0 ? (
-                  [...userBooks].reverse().map((book: BooksTypes) => (
-                    <BookCard key={book._id} book={book} />
-                  ))
+                  [...userBooks]
+                    .reverse()
+                    .map((book: BooksTypes) => (
+                      <BookCard key={book._id} book={book} />
+                    ))
                 ) : (
                   <div className="text-center text-gray-500 py-8">
                     You haven't added any books yet

@@ -3,7 +3,7 @@ import { MdOutlineEmail } from "react-icons/md";
 import { CiLock } from "react-icons/ci";
 import { Link } from "react-router-dom";
 import { MdErrorOutline } from "react-icons/md";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
@@ -12,9 +12,11 @@ import { InputField } from "../../components/common/InputField";
 import { ClipLoader } from "react-spinners";
 
 export default function Login() {
+const navigate: any = useNavigate();
+  useEffect(()=>{if(localStorage.getItem("token"))(navigate("/"))},[])
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const navigate: any = useNavigate();
 
   const dispatch = useDispatch();
 

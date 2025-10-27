@@ -3,7 +3,7 @@ import { MdOutlineEmail } from "react-icons/md";
 import { CiLock } from "react-icons/ci";
 import { Link } from "react-router-dom";
 import { CiUser } from "react-icons/ci";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
@@ -14,13 +14,15 @@ import { MdOutlineLocalPhone } from "react-icons/md";
 import { ClipLoader } from "react-spinners";
 
 export default function SignUp() {
+const navigate: any = useNavigate();
+  useEffect(()=>{if(localStorage.getItem("token"))(navigate("/"))},[])
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const dispatch = useDispatch();
 
   const [usedEmail, setUsedEmail] = useState<boolean>(false);
 
-  const navigate: any = useNavigate();
+  
 
   const [user, setUser] = useState<UserTypes>({
     name: "",

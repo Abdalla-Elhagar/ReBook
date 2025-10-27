@@ -8,6 +8,7 @@ import { InputField } from "../components/common/InputField";
 import { SelectField } from "../components/common/SelectField";
 import { BooksTypes, UserTypes } from "../types/dataTypes";
 import { useSelector } from "react-redux";
+import GoBack from "../components/common/GoBack";
 
 const bookstatus = ["New", "As New", "Very Good", "Good"];
 
@@ -86,6 +87,7 @@ export const AddBook = () => {
 
   return (
     <div className="container mx-auto px-40">
+      <GoBack />
       <form
         onSubmit={(e) => e.preventDefault()}
         className="contentBox mt-5 mx-auto px-40 "

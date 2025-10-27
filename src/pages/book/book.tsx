@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { BooksTypes } from "../../types/dataTypes";
+import GoBack from "../../components/common/GoBack";
 
 export default function BookPage() {
   const bookData:BooksTypes = useSelector(
@@ -14,6 +15,7 @@ export default function BookPage() {
     if (!bookUser) return <div>Loading...</div>
   return (
     <div className="bookPage py-0 lg:pt-[100px] lg:py-10 min-h-screen flex">
+      <GoBack />
       {localStorage.getItem("token") ? (
         <div className="container pb-10 max-lg:flex-col lg:justify-center lg:min-w-[800px] lg:w-1/2 md:w-3/5 w-full text-center lg:text-start items-center rounded-none md:rounded-xl">
           <img
