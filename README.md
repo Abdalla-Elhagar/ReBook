@@ -1,6 +1,6 @@
 # 📖 Rebook Project
 
-**Rebook** is a full-stack web platform designed to facilitate the exchange, sale, and purchase of used books. The application allows users to create accounts, list their books for exchange, search for books, and contact book owners directly.
+**Rebook** is a full-stack web platform designed to facilitate the exchange of used books. The application allows users to create accounts, list their books for exchange, search for books, and contact book owners directly.
 
 
 ## Demo Link: https://re-book-0.vercel.app/
